@@ -1,12 +1,13 @@
 <?php namespace DataService;
 
+use Resources\Resource;
+
 class DataImporter extends Resource {
 
-	public $records;
-	public $ClientTableId;
+	public $DataImport;
 
-	public function __construct($ClientTableId, $records) {
-		$this->records = $records;
-		$this->ClientTableId = $ClientTableId;
+	public function __construct($DataImport)
+	{
+		$this->$DataImport = $DataImport;
 	}
 }
