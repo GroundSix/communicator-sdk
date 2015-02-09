@@ -4,10 +4,11 @@ use Resources\Resource;
 
 class DataImporter extends Resource {
 
-	public $DataImport;
+	public $dataImport;
+	public $ClientTableId = 34111;
 
-	public function __construct($DataImport)
+	public function __construct($dataImport)
 	{
-		$this->$DataImport = $DataImport;
+		$this->dataImport = $dataImport;
 	}
 }

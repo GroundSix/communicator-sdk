@@ -32,8 +32,6 @@ class CommunicatorSdk {
 	}
 
 	public function post(Resource $resource) {
-		var_dump((array) $resource);
-		die;
 		$resource_reflection = new ReflectionClass($resource);
 		$service = $this->service($resource_reflection->getNamespaceName());
 

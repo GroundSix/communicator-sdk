@@ -18,7 +18,7 @@ $request = new \DataService\DataImporter([
     'ClientTableId' => 34111,
     'Records' => [
         'DataRecord' => [
-            new \Resources\Subscriber('Peter@test.com', 'Peter', [54771]),
+            new \Resources\Subscriber('test2@mail.com', 'Second Recipient', [55279]),
         ],
     ],
 ]);
@@ -63,3 +63,8 @@ $response = $sdk->post($request);
 //}
 
 var_dump($response);
+
+//Create user in contact table + assign them to the NE mailing list
+//Add them to the NW mailing list
+//Remove them from all mailing lists
+//Add them to the Yorkshire mailing list
