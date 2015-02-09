@@ -9,15 +9,12 @@ class DataRecord extends Resource {
 	 * @var ColumnMapping[]
 	 */
 	public $ColumnMappings;
-	/*
-	 * @var IsGloballyUnsubscribed Boolean
-	 */
+
 	public $IsGloballyUnsubscribed;
 
 	/**
 	 * @param Subscription[]	$Subscriptions
 	 * @param ColumnMapping[]	$ColumnMappings
-	 * @param IsGloballyUnsubscribed Boolean	$IsGloballyUnsubscribed
 	 */
 	function __construct(array $Subscriptions, array $ColumnMappings, $IsGloballyUnsubscribed = false)
 	{
