@@ -1,12 +1,9 @@
 {
   "name": "willishq/communicatorsdk",
   "description": "SDK for interacting with the Communicator SOAP api",
-  "keywords": [
-    "communicator",
-    "php",
-    "sdk"
-  ],
-  "require": {
-    "php": ">=5.3.0"
+  "version": "master",
+  "dist": {
+    "url": "git@bitbucket.org:accountname/reponame.git",
+    "type": "git"
   }
 }
