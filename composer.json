@@ -1,7 +1,7 @@
 {
-  "name": "willishq/communicatorsdk",
+  "name": "groundsix/communicator-sdk-php",
   "description": "SDK for interacting with the Communicator SOAP api",
-  "version": "master",
+  "version": "v1",
   "dist": {
     "url": "git@codebasehq.com:groundsix/communicator-sdk-php/v1.git",
     "type": "git"
