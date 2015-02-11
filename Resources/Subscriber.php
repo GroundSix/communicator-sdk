@@ -1,13 +1,18 @@
 <?php namespace Resources;
 
+/**
+ * Class Subscriber
+ * @package Resources
+ */
 class Subscriber {
+
     /**
      * @var array
      */
-
     public $ColumnMappings;
+
     /**
-     * @var Subscription[]
+     * @var array
      */
     public $Subscriptions;
 
@@ -16,8 +21,11 @@ class Subscriber {
      */
     public $IsGloballyUnsubscribed = false;
 
-    /*
-     *
+
+    /**
+     * @param $email
+     * @param $name
+     * @param array $subscriptions
      */
     function __construct($email, $name, array $subscriptions)
     {
@@ -29,6 +37,14 @@ class Subscriber {
         $this->Subscriptions = array_map(function ($value) {
             return new Subscription($value);
         }, $subscriptions);
+    }
+
+    /**
+     * @return email
+     */
+    function getEmail()
+    {
+        return $this->ColumnMappings[0]->Value;
     }
 
 }
