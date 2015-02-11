@@ -76,10 +76,11 @@ $pedro = new \Resources\Subscriber('pedro.debrito@groundsix.com', 'Pedro De Brit
 //var_dump($response);
 //
 //6. Get user subscription information
-$request = new \DataService\GetContactSubscriptions($pedro->getEmail(), $clientTableId);
-
-$response = $sdk->post($request);
-var_dump($response);
+//$request = new \DataService\GetContactSubscriptions($pedro->getEmail(), $clientTableId);
+//
+//$response = $sdk->post($request);
+//var_dump($response);
+//7. Remove user from the Yorkshire mailing list
 
 //$request = new MessageService\CreateHtmlEmail([
 // 	'Id' => '1',

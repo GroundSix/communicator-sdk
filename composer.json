@@ -1,0 +1,10 @@
+{
+  "name": "willishq/communicatorsdk",
+  "description": "SDK for interacting with the Communicator SOAP api",
+  "keywords": ["communicator", "php", "sdk"],
+  "autoload": {
+    "psr-4": {
+      "Willishq\\Flash\\": "communicatorsdk/"
+    }
+  }
+}

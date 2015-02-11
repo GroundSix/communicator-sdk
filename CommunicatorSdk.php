@@ -4,20 +4,6 @@ use Resources\CommunicatorCredentials;
 use Resources\Services\MessageService;
 use Resources\Services\DataService;
 use Resources\Services\ResponseService;
-/**
-<code>
-	$sdk = new CommunicatorSdk('username', 'password');
-	$request = new Resources\CreateHtmlEmail([
-		'Id' => '',
-		'MailingListId' => '',
-		'Name' => '',
-		'Description' => '',
-		'PlainText' => '',
-		'HtmlText' => ''
-	]);
-	$sdk->service('message')->post($request);
-</code>
-*/
 
 class CommunicatorSdk {
 
@@ -32,8 +18,6 @@ class CommunicatorSdk {
 	}
 
 	public function post(Resource $resource) {
-//		var_dump($resource);
-//		die;
 		$resource_reflection = new ReflectionClass($resource);
 		$service = $this->service($resource_reflection->getNamespaceName());
 
