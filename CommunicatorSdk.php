@@ -1,4 +1,5 @@
-<?php
+<?php namespace GroundSix\Communicator;
+
 use Resources\Resource;
 use Resources\CommunicatorCredentials;
 use Resources\Services\MessageService;
