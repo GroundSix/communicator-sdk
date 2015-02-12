@@ -1,12 +1,17 @@
 <?php
 
+use GroundSix\Communicator\CommunicatorSdk;
+
 date_default_timezone_set('Europe/London');
 
 function autoloader($class)
 {
-	$class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+    var_dump($class);
+    $class = str_replace('GroundSix\Communicator\\', '', $class);
+    var_dump($class);
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+    var_dump($class);
 	$file = __DIR__. '/'.$class.'.php';
-
     if(file_exists($file)) {
         require_once $file;
     }
@@ -30,6 +35,7 @@ $clientTableId = 34235;
 
 ////1. Create user in contact table + assign them to the NE mailing list
 $pedro = new \Resources\Subscriber('pedro.debrito@groundsix.com', 'Pedro De Brito', [$regions['north-east']]);
+var_dump($pedro);
 //
 //$request = new \DataService\DataImporter([
 //    'ClientTableId' => 34235,
@@ -80,7 +86,6 @@ $pedro = new \Resources\Subscriber('pedro.debrito@groundsix.com', 'Pedro De Brit
 //
 //$response = $sdk->post($request);
 //var_dump($response);
-//7. Remove user from the Yorkshire mailing list
 
 //$request = new MessageService\CreateHtmlEmail([
 // 	'Id' => '1',
