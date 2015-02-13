@@ -1,4 +1,4 @@
-<?php namespace Resources;
+<?php namespace GroundSix\Communicator\Resources;
 
 abstract class Resource {
 

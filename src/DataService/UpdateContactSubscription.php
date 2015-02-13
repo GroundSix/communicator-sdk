@@ -1,8 +1,6 @@
-<?php namespace DataService;
+<?php namespace GroundSix\Communicator\DataService;
 
-use Resources\Resource;
-use Resources\SubscriptionInfo;
-
+use GroundSix\Communicator\Resources\Resource;
 /**
  * Class UpdateContactSubscription
  * @package DataService

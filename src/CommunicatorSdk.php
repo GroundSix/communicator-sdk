@@ -1,10 +1,7 @@
 <?php namespace GroundSix\Communicator;
 
-use Resources\Resource;
-use Resources\CommunicatorCredentials;
-use Resources\Services\MessageService;
-use Resources\Services\DataService;
-use Resources\Services\ResponseService;
+use GroundSix\Communicator\Resources\Resource;
+use GroundSix\Communicator\Resources\CommunicatorCredentials;
 
 class CommunicatorSdk {
 
@@ -37,7 +34,7 @@ class CommunicatorSdk {
 	protected function service($type)
 	{
 		if (! isset($services[$type])) {
-			$service = '\\Services\\' . $type;
+			$service = '\\GroundSix\\Communicator\\Services\\' . $type;
 			if (! class_exists($service)) {
 				throw new Services\ServiceException("Unknown service: " . $service);
 			}
