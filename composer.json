@@ -5,5 +5,10 @@
   "dist": {
     "url": "git@codebasehq.com:groundsix/communicator-sdk-php/v1.git",
     "type": "git"
+  },
+  "autoload": {
+    "psr-4": {
+      "GroundSix\\Communicator\\": "src/"
+    }
   }
 }

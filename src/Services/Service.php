@@ -1,8 +1,6 @@
-<?php namespace Services;
-use Resources\Resource;
-use SoapClient;
-use SoapHeader;
-use ReflectionClass;
+<?php namespace GroundSix\Communicator\Services;
+use GroundSix\Communicator\Resources\Resource;
+
 abstract class Service {
 
 	public $header;

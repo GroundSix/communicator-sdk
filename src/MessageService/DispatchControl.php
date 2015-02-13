@@ -1,6 +1,6 @@
-<?php namespace MessageService;
+<?php namespace GroundSix\Communicator\MessageService;
 
-use Resources\Resource;
+use GroundSix\Communicator\Resources\Resource;
 
 class DispatchControl extends Resource {
 	public $control;

@@ -1,4 +1,4 @@
-<?php namespace Resources;
+<?php namespace GroundSix\Communicator\Resources;
 
 class DataRecord extends Resource {
 	/**
