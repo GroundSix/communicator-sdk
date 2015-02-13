@@ -2,7 +2,9 @@
 
 use GroundSix\Communicator\Resources\Resource;
 use GroundSix\Communicator\Resources\CommunicatorCredentials;
-
+use ReflectionClass;
+use SoapHeader;
+use SoapClient;
 class CommunicatorSdk {
 
 	public $communicatorCredentials;
@@ -34,7 +36,7 @@ class CommunicatorSdk {
 	protected function service($type)
 	{
 		if (! isset($services[$type])) {
-			$service = '\\GroundSix\\Communicator\\Services\\' . $type;
+			$service = str_replace('GroundSix\\Communicator\\', '\\GroundSix\\Communicator\\Services\\', $type);
 			if (! class_exists($service)) {
 				throw new Services\ServiceException("Unknown service: " . $service);
 			}
