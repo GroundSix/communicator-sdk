@@ -3,7 +3,7 @@ stages:
   - test
 
 .php: &php
-  image: registry.gitlab.com/jmsfwk/communicator-sdk:php
+  image: registry.gitlab.com/groundsix/communicator-sdk:php
   cache:
     key: "$CI_PROJECT_NAME-$CI_BUILD_REF_NAME-php"
     untracked: true
