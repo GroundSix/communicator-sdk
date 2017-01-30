@@ -1,17 +1,41 @@
-<?php namespace GroundSix\Communicator\Services;
-use GroundSix\Communicator\Resources\Resource;
+<?php
 
-abstract class Service {
+namespace GroundSix\Communicator\Services;
 
-	public $header;
+use GroundSix\Communicator\Resources\Credentials;
+use SoapClient;
 
-	public $url = '';
+abstract class Service
+{
+    const NAMESPACE = 'http://ws.communicatorcorp.com/';
 
-	public function addHeader(Resource $header)
-	{
-		$this->header = $header;
-	}
+    /**
+     * @var SoapClient
+     */
+    protected $client;
 
+    /**
+     * @var Credentials
+     */
+    protected $credentials;
 
+    /**
+     * Service constructor.
+     *
+     * @param Credentials $credentials
+     * @param SoapClient  $client
+     */
+    public function __construct(Credentials $credentials, SoapClient $client = null)
+    {
+        $this->credentials = $credentials;
 
+        if ($client === null) {
+            $client = static::makeClient();
+        }
+        $this->client = $client;
+
+        $this->client->__setSoapHeaders($credentials->getHeader());
+    }
+
+    abstract public static function makeClient(): SoapClient;
 }

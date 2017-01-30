@@ -1,0 +1,21 @@
+# Stages
+stages:
+  - test
+
+.php: &php
+  image: registry.gitlab.com/groundsix/communicator-sdk:php
+  cache:
+    key: "$CI_PROJECT_NAME-$CI_BUILD_REF_NAME-php"
+    untracked: true
+  before_script:
+    - composer self-update
+    - if [ ! -d "vendor" ]; then composer install --prefer-dist --no-progress; fi;
+
+# Test
+php:7.1:
+  <<: *php
+  stage: test
+  script:
+    - echo "Running PHPUnit Tests"
+    - if [ ! -e "vendor/bin/phpunit" ]; then composer install; fi
+    - ./vendor/bin/phpunit --colors
