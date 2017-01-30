@@ -50,7 +50,7 @@ class AddContactTest extends TestCase
     public function it_throws_an_exception_if_the_response_is_badly_formatted()
     {
         $this->expectException(BadResponseFormat::class);
-        $this->expectExceptionMessage('The response from Communicator was formatted as expected.');
+        $this->expectExceptionMessage('The response from Communicator was not formatted as expected.');
 
         $this->partialMock->formatResponse(new \stdClass());
     }
