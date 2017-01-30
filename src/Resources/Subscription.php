@@ -1,14 +1,26 @@
-<?php namespace GroundSix\Communicator\Resources;
+<?php
 
-class Subscription extends Resource {
-	public $MailingListId;
-	public $Subscribed;
-	public $HonourExistingUnsubscribes;
+namespace GroundSix\Communicator\Resources;
 
-	public function __construct ($MailingListId, $Subscribed = true, $HonourExistingUnsubscribes = false) {
-		$this->MailingListId = $MailingListId;
-		$this->Subscribed = $Subscribed;
-		$this->HonourExistingUnsubscribes = $HonourExistingUnsubscribes;
-	}
+class Subscription extends Resource
+{
 
+    /** @var int */
+    public $MailingListId;
+    /** @var bool */
+    public $Subscribed;
+    /** @var bool */
+    public $HonourExistingUnsubscribes;
+
+    /**
+     * @param int  $mailingListID
+     * @param bool $subscribed
+     * @param bool $honourExistingUnsubscribes
+     */
+    public function __construct(int $mailingListID, bool $subscribed = true, bool $honourExistingUnsubscribes = false)
+    {
+        $this->MailingListId = $mailingListID;
+        $this->Subscribed = $subscribed;
+        $this->HonourExistingUnsubscribes = $honourExistingUnsubscribes;
+    }
 }
