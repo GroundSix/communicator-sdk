@@ -1,23 +1,22 @@
-<?php namespace GroundSix\Communicator\DataService;
+<?php
 
+namespace GroundSix\Communicator\DataService;
+
+use GroundSix\Communicator\Resources\DataImport;
 use GroundSix\Communicator\Resources\Resource;
 
-class DataImporter extends Resource {
+class DataImporter extends Resource
+{
+    /**
+     * @var
+     */
+    protected $dataImport;
 
-	/**
-	 * @var
+    /**
+     * @param $dataImport
      */
-	public $dataImport;
-	/**
-	 * @var int
-     */
-	public $ClientTableId = 34111;
-
-	/**
-	 * @param $dataImport
-     */
-	public function __construct($dataImport)
-	{
-		$this->dataImport = $dataImport;
-	}
+    public function __construct(DataImport $dataImport)
+    {
+        $this->dataImport = $dataImport;
+    }
 }

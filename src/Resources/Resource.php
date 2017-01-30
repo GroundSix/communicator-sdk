@@ -1,23 +1,10 @@
-<?php namespace GroundSix\Communicator\Resources;
+<?php
 
-abstract class Resource {
+namespace GroundSix\Communicator\Resources;
 
-	public function __get($name)
-	{
-		$name = ucfirst($name);
-		if (property_exists($this, $name)) {
-			return $this->{$name};
-		}
-		throw new ResourceException("Unknown property: " . $name . " on " . get_class($this));
-	}
+abstract class Resource
+{
 
-	public function __set($name, $value)
-	{
-		$name = ucfirst($name);
-		if (property_exists($this, $name)) {
-			$this->{$name} = $value;
-			return;
-		}
-		throw new ResourceException("Unknown property: " . $name . " on " . get_class($this));
-	}
+    const DATE_FORMAT = 'Y-m-d\TH:i:s.u';
+    const NAMESPACE = 'http://ws.communicatorcorp.com/';
 }

@@ -1,14 +1,23 @@
 {
   "name": "groundsix/communicator-sdk-php",
   "description": "SDK for interacting with the Communicator SOAP api",
-  "version": "v1",
-  "dist": {
-    "url": "git@codebasehq.com:groundsix/communicator-sdk-php/v1.git",
-    "type": "git"
-  },
   "autoload": {
     "psr-4": {
       "GroundSix\\Communicator\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "GroundSix\\Communicator\\Test\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=7.0.0",
+    "ext-soap": "*",
+    "myclabs/php-enum": "^1.5",
+    "respect/validation": "^1.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7"
   }
 }
