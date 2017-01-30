@@ -2,6 +2,7 @@ Communicator SDK
 ================
 
 [![build status](https://gitlab.com/groundsix/communicator-sdk/badges/master/build.svg)](https://gitlab.com/groundsix/communicator-sdk/commits/master)
+[![coverage report](https://gitlab.com/groundsix/communicator-sdk/badges/master/coverage.svg)](https://gitlab.com/groundsix/communicator-sdk/commits/master)
 
 SDK for interacting with the Communicator SOAP API.
 
