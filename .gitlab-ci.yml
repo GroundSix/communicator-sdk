@@ -18,4 +18,4 @@ php:7.1:
   script:
     - echo "Running PHPUnit Tests"
     - if [ ! -e "vendor/bin/phpunit" ]; then composer install; fi
-    - ./vendor/bin/phpunit --colors
+    - ./vendor/bin/phpunit --colors --coverage-text
