@@ -6,6 +6,10 @@ use GroundSix\Communicator\DataService\AddContact;
 use GroundSix\Communicator\DataService\DataImporter;
 use GroundSix\Communicator\Exceptions\BadResponseFormat;
 use GroundSix\Communicator\Exceptions\DataImporterException;
+use GroundSix\Communicator\Resources\ColumnMapping;
+use GroundSix\Communicator\Resources\DataImport;
+use GroundSix\Communicator\Resources\DataRecord;
+use GroundSix\Communicator\Resources\Subscription;
 use GroundSix\Communicator\Test\TestCase;
 
 class AddContactTest extends TestCase
@@ -72,6 +76,23 @@ class AddContactTest extends TestCase
         $this->expectExceptionCode($code);
 
         $this->partialMock->formatResponse($response);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_add_subscriptions()
+    {
+        $expected = new DataImporter(
+            new DataImport(1,
+                [new DataRecord([new ColumnMapping(1, '')], [new Subscription(1)])]
+            )
+        );
+
+        $addContact = new AddContact(1, [1 => ''], [1]);
+        $dataImporter = $addContact->getRequest();
+
+        $this->assertEquals($expected, $dataImporter);
     }
 
     public function errorResults()

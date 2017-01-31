@@ -8,6 +8,7 @@ use GroundSix\Communicator\Exceptions\DataImporterException;
 use GroundSix\Communicator\Resources\ColumnMapping;
 use GroundSix\Communicator\Resources\DataImport;
 use GroundSix\Communicator\Resources\DataRecord;
+use GroundSix\Communicator\Resources\Subscription;
 use Respect\Validation\Exceptions\ValidationException;
 use Respect\Validation\Validator as V;
 use stdClass;
@@ -34,13 +35,15 @@ class AddContact
      *
      * @param int   $tableId
      * @param array $data
+     * @param array $subscriptions
      */
-    public function __construct(int $tableId, array $data)
+    public function __construct(int $tableId, array $data, $subscriptions = [])
     {
         $this->tableId = $tableId;
         $this->data = ColumnMapping::map($data);
 
-        $dataRecord = new DataRecord($this->data, []);
+
+        $dataRecord = new DataRecord($this->data, Subscription::fromArray($subscriptions));
         $dataImport = new DataImport($this->tableId, [$dataRecord]);
         $this->request = new DataImporter($dataImport);
     }
