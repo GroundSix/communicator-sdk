@@ -1,6 +1,14 @@
 {
-  "name": "groundsix/communicator-sdk-php",
+  "name": "groundsix/communicator-sdk",
   "description": "SDK for interacting with the Communicator SOAP api",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "James Fenwick",
+      "email": "james.fenwick@groundsix.com",
+      "role": "Developer"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "GroundSix\\Communicator\\": "src/"
