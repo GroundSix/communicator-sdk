@@ -100,7 +100,9 @@ class AddContact
                     V::attribute('Mappings', V::alwaysValid())
                 )
             ),
-            V::attribute('Mappings', V::arrayVal()->each(ColumnMapping::rules()), false)
+            V::attribute('Mappings',
+                V::attribute('ColumnMapping', V::arrayVal()->each(ColumnMapping::rules()), false)
+            )
         );
 
         $topLevelDetail = V::allOf(

@@ -132,9 +132,11 @@ class AddContactTest extends TestCase
                             'Result' => $result,
                             'Response' => $message,
                             'Mappings' => [
-                                [
-                                    'ColumnId' => 1,
-                                    'Value' => '',
+                                'ColumnMapping' => [
+                                    [
+                                        'ColumnId' => 1,
+                                        'Value' => '',
+                                    ],
                                 ],
                             ],
                         ],
