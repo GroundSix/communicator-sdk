@@ -91,17 +91,8 @@ class AddContact
                 V::attribute('Result', V::stringType()->not(
                     V::in(static::SUCCESS_CODES)
                 )),
-                V::allOf(
-                    V::attribute('Response', V::stringType()->notEmpty()),
-                    V::attribute('Mappings', V::notOptional())
-                ),
-                V::allOf(
-                    V::attribute('Response', V::alwaysValid()),
-                    V::attribute('Mappings', V::alwaysValid())
-                )
-            ),
-            V::attribute('Mappings',
-                V::attribute('ColumnMapping', V::arrayVal()->each(ColumnMapping::rules()), false)
+                V::attribute('Response', V::stringType()->notEmpty()),
+                V::attribute('Response', V::alwaysValid())
             )
         );
 
