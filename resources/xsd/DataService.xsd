@@ -1,0 +1,1074 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://ws.communicatorcorp.com/"
+            targetNamespace="http://ws.communicatorcorp.com/"
+            elementFormDefault="qualified">
+    <xsd:element name="GetClientTable">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="clientTableId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetClientTableResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetClientTableResult" type="tns:ClientTable"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ClientTable">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Description" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="TableType" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CommunicatorCredentials" type="tns:CommunicatorCredentials"/>
+    <xsd:complexType name="CommunicatorCredentials">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Username" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Password" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:anyAttribute/>
+    </xsd:complexType>
+    <xsd:element name="GetClientTables">
+        <xsd:complexType/>
+    </xsd:element>
+    <xsd:element name="GetClientTablesResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetClientTablesResult" type="tns:ArrayOfClientTable"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfClientTable">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="ClientTable" nillable="true" type="tns:ClientTable"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetClientTablesForMailingList">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetClientTablesForMailingListResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetClientTablesForMailingListResult"
+                             type="tns:ArrayOfClientTable"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetClientTableColumns">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="clientTableId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetClientTableColumnsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetClientTableColumnsResult"
+                             type="tns:ArrayOfClientTableColumn"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfClientTableColumn">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="ClientTableColumn" nillable="true"
+                         type="tns:ClientTableColumn"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ClientTableColumn">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="" name="Name" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IsUniqueColumn" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IsLinkColumn" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IsLookupColumn" type="xsd:boolean"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="MailingType" nillable="true" type="tns:MailingType"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="" name="DataType" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="MailingType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Email"/>
+            <xsd:enumeration value="Sms"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="DataImporter">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="dataImport" type="tns:DataImport"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="DataImport">
+        <xsd:complexContent mixed="false">
+            <xsd:extension base="tns:DataImportBase">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="1" name="Records" type="tns:ArrayOfDataRecord"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="DataImportBase">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ClientTableId" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="TriggeredDispatches" type="tns:ArrayOfTriggeredDispatch"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="Insert" name="Type" type="tns:DataImportUpdateMethod"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="dd/MM/yyyy" name="FormatDate" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArrayOfTriggeredDispatch">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="TriggeredDispatch" nillable="true"
+                         type="tns:TriggeredDispatch"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TriggeredDispatch">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="DispatchId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TriggeredDispatchMethod" type="tns:TriggeredDispatchMethod"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="TriggeredDispatchMethod">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="OnlySendToNewSubscribers"/>
+            <xsd:enumeration value="SendToAllSubscribers"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="DataImportUpdateMethod">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Insert"/>
+            <xsd:enumeration value="Update"/>
+            <xsd:enumeration value="Upsert"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="ArrayOfDataRecord">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="DataRecord" nillable="true" type="tns:DataRecord"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DataRecord">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ColumnMappings" type="tns:ArrayOfColumnMapping"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Subscriptions" type="tns:ArrayOfSubscription"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="IsGloballyUnsubscribed" nillable="true" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArrayOfColumnMapping">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="ColumnMapping" nillable="true"
+                         type="tns:ColumnMapping"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ColumnMapping">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ColumnId" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Value" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArrayOfSubscription">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Subscription" nillable="true"
+                         type="tns:Subscription"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Subscription">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="MailingListId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Subscribed" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="true" name="HonourExistingUnsubscribes"
+                         type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="DataImporterResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="DataImporterResult" type="tns:DataImportResponse"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="DataImportResponse">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ImportDetails" type="tns:ArrayOfDataImportResponseDetail"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ImportTopLevel" type="tns:DataImportResponseTopLevel"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArrayOfDataImportResponseDetail">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="DataImportResponseDetail" nillable="true"
+                         type="tns:DataImportResponseDetail"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DataImportResponseDetail">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Row" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Result" type="tns:ImportResult"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Response" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Mappings" type="tns:ArrayOfColumnMapping"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="ImportResult">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="FailedInserting"/>
+            <xsd:enumeration value="FailedUpdating"/>
+            <xsd:enumeration value="SuccessInserting"/>
+            <xsd:enumeration value="SuccessUpdating"/>
+            <xsd:enumeration value="PrimaryKeyViolation"/>
+            <xsd:enumeration value="ForeignKeyViolation"/>
+            <xsd:enumeration value="ColumnMappingFailure"/>
+            <xsd:enumeration value="ColumnsNotInTable"/>
+            <xsd:enumeration value="NoRequiredColumnInTable"/>
+            <xsd:enumeration value="ColumnRequired"/>
+            <xsd:enumeration value="DuplicateColumnMapping"/>
+            <xsd:enumeration value="NoChangeToExistingContact"/>
+            <xsd:enumeration value="NotNullViolation"/>
+            <xsd:enumeration value="Unknown"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="DataImportResponseTopLevel">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="TopLevelDetail" type="tns:ArrayOfTopLevelDetailItem"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArrayOfTopLevelDetailItem">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="TopLevelDetailItem" nillable="true"
+                         type="tns:TopLevelDetailItem"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TopLevelDetailItem">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ImportResultType" type="tns:ImportResult"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ImportResultCount" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="DataImporterViaFTP">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="dataImport" type="tns:FTPDataImport"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="FTPDataImport">
+        <xsd:complexContent mixed="false">
+            <xsd:extension base="tns:DataImportBase">
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:int"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" name="Delimiter" type="xsd:string"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" name="Filename" type="xsd:string"/>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="Status" type="tns:DataImportStatus"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" name="Subscriptions"
+                                 type="tns:ArrayOfDataImportSubscription"/>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="TotalSuccess" type="xsd:int"/>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="TotalFailed" type="xsd:int"/>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="RecordCount" type="xsd:int"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:simpleType name="DataImportStatus">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AwaitingAuthorisation"/>
+            <xsd:enumeration value="AwaitingImporting"/>
+            <xsd:enumeration value="Preparing"/>
+            <xsd:enumeration value="Pending"/>
+            <xsd:enumeration value="Importing"/>
+            <xsd:enumeration value="Pausing"/>
+            <xsd:enumeration value="Paused"/>
+            <xsd:enumeration value="PausedOnError"/>
+            <xsd:enumeration value="Restarting"/>
+            <xsd:enumeration value="Cancelled"/>
+            <xsd:enumeration value="CancelledOnDataError"/>
+            <xsd:enumeration value="Complete"/>
+            <xsd:enumeration value="Failed"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="ArrayOfDataImportSubscription">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="DataImportSubscription" nillable="true"
+                         type="tns:DataImportSubscription"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DataImportSubscription">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="MailingListId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="SubscriptionMethod" type="tns:SubscriptionUpdateMethod"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="SubscriptionUpdateMethod">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="SubscribeAll"/>
+            <xsd:enumeration value="UnsubscribeAll"/>
+            <xsd:enumeration value="HonourExistingUnsubscribes"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="DataImporterViaFTPResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="DataImporterViaFTPResult" type="tns:FTPDataImport"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetDataImport">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="dataImportId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetDataImportResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetDataImportResult" type="tns:FTPDataImport"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="DataImportControl">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="importControl" type="tns:Control"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="Control">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Command" type="tns:ControlCommand"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="ControlCommand">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Authorise"/>
+            <xsd:enumeration value="Pause"/>
+            <xsd:enumeration value="Resume"/>
+            <xsd:enumeration value="Cancel"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="DataImportControlResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="DataImportControlResult" type="tns:FTPDataImport"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CreateMailingList">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="mailingList" type="tns:MailingList"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="MailingList">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Description" type="xsd:string"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ContactTableId" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="MailingListType" type="xsd:string"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="SubscriptionType" type="tns:SubscriptionType"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="FromAddressId" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="FromName" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ExternalUnsubscribeLink" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DataTables" type="tns:ArrayOfClientDataTable"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Relationships" type="tns:ArrayOfClientTableRelationship"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="SubscriptionType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="SingleOptIn"/>
+            <xsd:enumeration value="DoubleOptIn"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="ArrayOfClientDataTable">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="ClientDataTable" nillable="true"
+                         type="tns:ClientDataTable"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ClientDataTable">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="JoinType" type="tns:TableJoinType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="TableJoinType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Inner"/>
+            <xsd:enumeration value="Outer"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="ArrayOfClientTableRelationship">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="ClientTableRelationship" nillable="true"
+                         type="tns:ClientTableRelationship"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ClientTableRelationship">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Alias" type="xsd:string"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="PrimaryKeyClientTableColumnId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="PrimaryKeyClientTableId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ForeignKeyClientTableColumnId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ForeignKeyClientTableId" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CreateMailingListResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="CreateMailingListResult" type="tns:MailingList"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="UpdateMailingList">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="mailingList" type="tns:MailingList"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="UpdateMailingListResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="UpdateMailingListResult" type="tns:MailingList"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingList">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetMailingListResult" type="tns:MailingList"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingLists">
+        <xsd:complexType/>
+    </xsd:element>
+    <xsd:element name="GetMailingListsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetMailingListsResult" type="tns:ArrayOfMailingList"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfMailingList">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="MailingList" nillable="true" type="tns:MailingList"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetMailingListsForClientTable">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="clientTableId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListsForClientTableResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetMailingListsForClientTableResult"
+                             type="tns:ArrayOfMailingList"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListColumns">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListColumnsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetMailingListColumnsResult"
+                             type="tns:ArrayOfClientTableColumn"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListFromAddresses">
+        <xsd:complexType/>
+    </xsd:element>
+    <xsd:element name="GetMailingListFromAddressesResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetMailingListFromAddressesResult"
+                             type="tns:ArrayOfFromAddress"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfFromAddress">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="FromAddress" nillable="true" type="tns:FromAddress"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FromAddress">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Description" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetMailingListCount">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListId" type="xsd:int"/>
+                <xsd:element minOccurs="1" maxOccurs="1" name="subscriberSearchType" type="tns:SubscriberSearchType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:simpleType name="SubscriberSearchType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="All"/>
+            <xsd:enumeration value="OnlySubscribed"/>
+            <xsd:enumeration value="OnlyExplicitlyUnsubscribed"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="GetMailingListCountResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="GetMailingListCountResult" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CreateMailingListFilter">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListId" type="xsd:int"/>
+                <xsd:element minOccurs="0" maxOccurs="1" name="mailingListFilter" type="tns:MailingListFilter"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="MailingListFilter">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="" name="Name" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="" name="Description" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MailingListId" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="FilterItems" type="tns:ArrayOfMailingListFilterItem"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArrayOfMailingListFilterItem">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="MailingListFilterItem" nillable="true"
+                         type="tns:MailingListFilterItem"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MailingListFilterItem">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ColumnId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ComparisonColumnId" nillable="true" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Value" type="xsd:string"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="OperatorId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Condition" type="tns:SqlCondition"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Relationship" type="tns:ClientTableRelationship"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ComparisonRelationship" type="tns:ClientTableRelationship"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="SqlCondition">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="None"/>
+            <xsd:enumeration value="AND"/>
+            <xsd:enumeration value="OR"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="CreateMailingListFilterResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="CreateMailingListFilterResult"
+                             type="tns:MailingListFilter"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="UpdateMailingListFilter">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListId" type="xsd:int"/>
+                <xsd:element minOccurs="0" maxOccurs="1" name="mailingListFilter" type="tns:MailingListFilter"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="UpdateMailingListFilterResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="UpdateMailingListFilterResult"
+                             type="tns:MailingListFilter"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="DeleteMailingListFilter">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListFilterId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="DeleteMailingListFilterResponse">
+        <xsd:complexType/>
+    </xsd:element>
+    <xsd:element name="GetMailingListFilter">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListFilterId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListFilterResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetMailingListFilterResult"
+                             type="tns:MailingListFilter"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListFilters">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListFiltersResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetMailingListFiltersResult"
+                             type="tns:ArrayOfMailingListFilter"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfMailingListFilter">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="MailingListFilter" nillable="true"
+                         type="tns:MailingListFilter"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetMailingListFilterOperators">
+        <xsd:complexType/>
+    </xsd:element>
+    <xsd:element name="GetMailingListFilterOperatorsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetMailingListFilterOperatorsResult"
+                             type="tns:ArrayOfOperatorInfo"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfOperatorInfo">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="OperatorInfo" nillable="true"
+                         type="tns:OperatorInfo"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OperatorInfo">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Order" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Description" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="FormatString" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Value" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetMailingListFilterCount">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListId" type="xsd:int"/>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListFilterId" type="xsd:int"/>
+                <xsd:element minOccurs="1" maxOccurs="1" name="subscriberSearchType" type="tns:SubscriberSearchType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListFilterCountResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="GetMailingListFilterCountResult" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListAnalyticsProviders">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListAnalyticsProvidersResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetMailingListAnalyticsProvidersResult"
+                             type="tns:ArrayOfMailingListAnalyticsProvider"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfMailingListAnalyticsProvider">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="MailingListAnalyticsProvider" nillable="true"
+                         type="tns:MailingListAnalyticsProvider"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MailingListAnalyticsProvider">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ProviderName" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="TrackedDomains" type="tns:ArrayOfString"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Parameters"
+                         type="tns:ArrayOfMailingListAnalyticsProviderParameter"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArrayOfString">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArrayOfMailingListAnalyticsProviderParameter">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="MailingListAnalyticsProviderParameter"
+                         nillable="true"
+                         type="tns:MailingListAnalyticsProviderParameter"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MailingListAnalyticsProviderParameter">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ParameterId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ParameterType" type="tns:ParameterType"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Value" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="ParameterType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Ignore"/>
+            <xsd:enumeration value="Column"/>
+            <xsd:enumeration value="Fixed"/>
+            <xsd:enumeration value="Custom"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="CreateTableExtract">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="extract" type="tns:TableDataExtract"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="TableDataExtract">
+        <xsd:complexContent mixed="false">
+            <xsd:extension base="tns:ExtractBase">
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="TableId" type="xsd:int"/>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="ExternalInsertUpdatesOnly" type="xsd:boolean"/>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="FromDate" type="xsd:dateTime"/>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="ToDate" type="xsd:dateTime"/>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="GetSuppressions" type="xsd:boolean"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="false" name="TimePartSignificant"
+                                 type="xsd:boolean"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ExtractBase">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="Bounces" name="Type" type="tns:JobType"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="Processing" name="Status" type="tns:JobStatus"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="FileName" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="Extended" name="ExtractionScope"
+                         type="tns:ExtractionScope"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="CompressFile" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="EncodeAsUTF8" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="RetrieveDeltas" type="xsd:boolean"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="DateStarted" nillable="true" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ExtractColumns" type="tns:ArrayOfExtractColumn"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="JobType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Bounces"/>
+            <xsd:enumeration value="Opens"/>
+            <xsd:enumeration value="Clicks"/>
+            <xsd:enumeration value="Conversions"/>
+            <xsd:enumeration value="DispatchUnsubscribes"/>
+            <xsd:enumeration value="MailingListUnsubscribes"/>
+            <xsd:enumeration value="MailingList"/>
+            <xsd:enumeration value="TableRecords"/>
+            <xsd:enumeration value="ClicksByLink"/>
+            <xsd:enumeration value="Sent"/>
+            <xsd:enumeration value="SMSDeliveryFailure"/>
+            <xsd:enumeration value="SMSDeliveryExclusion"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="JobStatus">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="New"/>
+            <xsd:enumeration value="Processing"/>
+            <xsd:enumeration value="Complete"/>
+            <xsd:enumeration value="Failed"/>
+            <xsd:enumeration value="Cancelled"/>
+            <xsd:enumeration value="Expired"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ExtractionScope">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Standard"/>
+            <xsd:enumeration value="Extended"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="ArrayOfExtractColumn">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="ExtractColumn" nillable="true"
+                         type="tns:ExtractColumn"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ExtractColumn">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ColumnId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="RelationshipId" nillable="true" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CreateTableExtractResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="CreateTableExtractResult" type="tns:TableDataExtract"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetTableExtract">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="extractId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetTableExtractResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetTableExtractResult" type="tns:TableDataExtract"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CreateMailingListExtract">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="extract" type="tns:MailingListExtract"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="MailingListExtract">
+        <xsd:complexContent mixed="false">
+            <xsd:extension base="tns:ExtractBase">
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="MailingListId" type="xsd:int"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MailingListFilterId" type="xsd:int"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="All" name="SubscriberSearchType"
+                                 type="tns:SubscriberSearchType"/>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="FromDate" type="xsd:dateTime"/>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="ToDate" type="xsd:dateTime"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="false" name="TimePartSignificant"
+                                 type="xsd:boolean"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="false" name="GetSuppressions" type="xsd:boolean"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="CreateMailingListExtractResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="CreateMailingListExtractResult"
+                             type="tns:MailingListExtract"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListExtract">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="extractId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListExtractResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetMailingListExtractResult"
+                             type="tns:MailingListExtract"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetContactSubscription">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="emailAddress" type="xsd:string"/>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetContactSubscriptionResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetContactSubscriptionResult"
+                             type="tns:SubscriptionInfo"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="SubscriptionInfo">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="MailingListId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="IsSubscribed" type="xsd:boolean"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="DateLastAction" type="xsd:dateTime"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="SubscriptionSourceType" type="tns:SubscriptionSourceType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="SubscriptionSourceType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="TestCase"/>
+            <xsd:enumeration value="DataImport"/>
+            <xsd:enumeration value="DataCaptureForm"/>
+            <xsd:enumeration value="ManualEntry"/>
+            <xsd:enumeration value="WebService"/>
+            <xsd:enumeration value="SubscriptionConfirmation"/>
+            <xsd:enumeration value="MobileDataForm"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="GetContactSubscriptions">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="emailAddress" type="xsd:string"/>
+                <xsd:element minOccurs="1" maxOccurs="1" name="clientTableId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetContactSubscriptionsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetContactSubscriptionsResult"
+                             type="tns:ArrayOfSubscriptionInfo"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfSubscriptionInfo">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="SubscriptionInfo" nillable="true"
+                         type="tns:SubscriptionInfo"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="UpdateContactSubscription">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="emailAddress" type="xsd:string"/>
+                <xsd:element minOccurs="0" maxOccurs="1" name="subscription" type="tns:SubscriptionInfo"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="UpdateContactSubscriptionResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="UpdateContactSubscriptionResult"
+                             type="tns:SubscriptionInfo"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="UpdateContactSubscriptions">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="emailAddress" type="xsd:string"/>
+                <xsd:element minOccurs="0" maxOccurs="1" name="subscriptions" type="tns:ArrayOfSubscriptionInfo"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="UpdateContactSubscriptionsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="UpdateContactSubscriptionsResult"
+                             type="tns:ArrayOfSubscriptionInfo"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetContactData">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="tableId" type="xsd:int"/>
+                <xsd:element minOccurs="0" maxOccurs="1" name="contactIdentifier" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetContactDataResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetContactDataResult" type="tns:DataRecord"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetRelationships">
+        <xsd:complexType/>
+    </xsd:element>
+    <xsd:element name="GetRelationshipsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetRelationshipsResult"
+                             type="tns:ArrayOfClientTableRelationship"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetClientTableRelationships">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="tableId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetClientTableRelationshipsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetClientTableRelationshipsResult"
+                             type="tns:ArrayOfClientTableRelationship"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListRelationships">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetMailingListRelationshipsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetMailingListRelationshipsResult"
+                             type="tns:ArrayOfClientTableRelationship"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="ClientTable" nillable="true" type="tns:ClientTable"/>
+    <xsd:element name="ArrayOfClientTable" nillable="true" type="tns:ArrayOfClientTable"/>
+    <xsd:element name="ArrayOfClientTableColumn" nillable="true" type="tns:ArrayOfClientTableColumn"/>
+    <xsd:element name="FTPDataImport" nillable="true" type="tns:FTPDataImport"/>
+    <xsd:element name="MailingList" nillable="true" type="tns:MailingList"/>
+    <xsd:element name="ArrayOfMailingList" nillable="true" type="tns:ArrayOfMailingList"/>
+    <xsd:element name="ArrayOfFromAddress" nillable="true" type="tns:ArrayOfFromAddress"/>
+    <xsd:element name="int" type="xsd:int"/>
+    <xsd:element name="MailingListFilter" nillable="true" type="tns:MailingListFilter"/>
+    <xsd:element name="ArrayOfMailingListFilter" nillable="true" type="tns:ArrayOfMailingListFilter"/>
+    <xsd:element name="ArrayOfOperatorInfo" nillable="true" type="tns:ArrayOfOperatorInfo"/>
+    <xsd:element name="ArrayOfMailingListAnalyticsProvider" nillable="true"
+                 type="tns:ArrayOfMailingListAnalyticsProvider"/>
+    <xsd:element name="TableDataExtract" nillable="true" type="tns:TableDataExtract"/>
+    <xsd:element name="MailingListExtract" nillable="true" type="tns:MailingListExtract"/>
+    <xsd:element name="SubscriptionInfo" nillable="true" type="tns:SubscriptionInfo"/>
+    <xsd:element name="ArrayOfSubscriptionInfo" nillable="true" type="tns:ArrayOfSubscriptionInfo"/>
+    <xsd:element name="DataRecord" nillable="true" type="tns:DataRecord"/>
+    <xsd:element name="ArrayOfClientTableRelationship" nillable="true" type="tns:ArrayOfClientTableRelationship"/>
+</xsd:schema>

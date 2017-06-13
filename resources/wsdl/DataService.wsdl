@@ -1,0 +1,3270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ws.communicatorcorp.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://ws.communicatorcorp.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.communicatorcorp.com/">
+      <s:element name="GetClientTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clientTableId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientTableResult" type="tns:ClientTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ClientTable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TableType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CommunicatorCredentials" type="tns:CommunicatorCredentials" />
+      <s:complexType name="CommunicatorCredentials">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetClientTables">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetClientTablesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientTablesResult" type="tns:ArrayOfClientTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfClientTable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ClientTable" nillable="true" type="tns:ClientTable" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetClientTablesForMailingList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientTablesForMailingListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientTablesForMailingListResult" type="tns:ArrayOfClientTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientTableColumns">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clientTableId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientTableColumnsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientTableColumnsResult" type="tns:ArrayOfClientTableColumn" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfClientTableColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ClientTableColumn" nillable="true" type="tns:ClientTableColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ClientTableColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="IsUniqueColumn" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="IsLinkColumn" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="IsLookupColumn" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MailingType" nillable="true" type="tns:MailingType" />
+          <s:element minOccurs="0" maxOccurs="1" default="" name="DataType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MailingType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Email" />
+          <s:enumeration value="Sms" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DataImporter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dataImport" type="tns:DataImport" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DataImport">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DataImportBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Records" type="tns:ArrayOfDataRecord" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DataImportBase">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ClientTableId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TriggeredDispatches" type="tns:ArrayOfTriggeredDispatch" />
+          <s:element minOccurs="0" maxOccurs="1" default="Insert" name="Type" type="tns:DataImportUpdateMethod" />
+          <s:element minOccurs="0" maxOccurs="1" default="dd/MM/yyyy" name="FormatDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTriggeredDispatch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TriggeredDispatch" nillable="true" type="tns:TriggeredDispatch" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TriggeredDispatch">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DispatchId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TriggeredDispatchMethod" type="tns:TriggeredDispatchMethod" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TriggeredDispatchMethod">
+        <s:restriction base="s:string">
+          <s:enumeration value="OnlySendToNewSubscribers" />
+          <s:enumeration value="SendToAllSubscribers" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DataImportUpdateMethod">
+        <s:restriction base="s:string">
+          <s:enumeration value="Insert" />
+          <s:enumeration value="Update" />
+          <s:enumeration value="Upsert" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDataRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DataRecord" nillable="true" type="tns:DataRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DataRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ColumnMappings" type="tns:ArrayOfColumnMapping" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subscriptions" type="tns:ArrayOfSubscription" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsGloballyUnsubscribed" nillable="true" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfColumnMapping">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ColumnMapping" nillable="true" type="tns:ColumnMapping" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ColumnMapping">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ColumnId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSubscription">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Subscription" nillable="true" type="tns:Subscription" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Subscription">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MailingListId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Subscribed" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="true" name="HonourExistingUnsubscribes" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DataImporterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DataImporterResult" type="tns:DataImportResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DataImportResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ImportDetails" type="tns:ArrayOfDataImportResponseDetail" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImportTopLevel" type="tns:DataImportResponseTopLevel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDataImportResponseDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DataImportResponseDetail" nillable="true" type="tns:DataImportResponseDetail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DataImportResponseDetail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Row" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="tns:ImportResult" />
+          <s:element minOccurs="0" maxOccurs="1" name="Response" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mappings" type="tns:ArrayOfColumnMapping" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ImportResult">
+        <s:restriction base="s:string">
+          <s:enumeration value="FailedInserting" />
+          <s:enumeration value="FailedUpdating" />
+          <s:enumeration value="SuccessInserting" />
+          <s:enumeration value="SuccessUpdating" />
+          <s:enumeration value="PrimaryKeyViolation" />
+          <s:enumeration value="ForeignKeyViolation" />
+          <s:enumeration value="ColumnMappingFailure" />
+          <s:enumeration value="ColumnsNotInTable" />
+          <s:enumeration value="NoRequiredColumnInTable" />
+          <s:enumeration value="ColumnRequired" />
+          <s:enumeration value="DuplicateColumnMapping" />
+          <s:enumeration value="NoChangeToExistingContact" />
+          <s:enumeration value="NotNullViolation" />
+          <s:enumeration value="Unknown" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="DataImportResponseTopLevel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TopLevelDetail" type="tns:ArrayOfTopLevelDetailItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTopLevelDetailItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TopLevelDetailItem" nillable="true" type="tns:TopLevelDetailItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TopLevelDetailItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ImportResultType" type="tns:ImportResult" />
+          <s:element minOccurs="1" maxOccurs="1" name="ImportResultCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DataImporterViaFTP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dataImport" type="tns:FTPDataImport" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FTPDataImport">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DataImportBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Delimiter" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Filename" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:DataImportStatus" />
+              <s:element minOccurs="0" maxOccurs="1" name="Subscriptions" type="tns:ArrayOfDataImportSubscription" />
+              <s:element minOccurs="1" maxOccurs="1" name="TotalSuccess" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TotalFailed" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="RecordCount" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="DataImportStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="AwaitingAuthorisation" />
+          <s:enumeration value="AwaitingImporting" />
+          <s:enumeration value="Preparing" />
+          <s:enumeration value="Pending" />
+          <s:enumeration value="Importing" />
+          <s:enumeration value="Pausing" />
+          <s:enumeration value="Paused" />
+          <s:enumeration value="PausedOnError" />
+          <s:enumeration value="Restarting" />
+          <s:enumeration value="Cancelled" />
+          <s:enumeration value="CancelledOnDataError" />
+          <s:enumeration value="Complete" />
+          <s:enumeration value="Failed" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDataImportSubscription">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DataImportSubscription" nillable="true" type="tns:DataImportSubscription" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DataImportSubscription">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MailingListId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubscriptionMethod" type="tns:SubscriptionUpdateMethod" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SubscriptionUpdateMethod">
+        <s:restriction base="s:string">
+          <s:enumeration value="SubscribeAll" />
+          <s:enumeration value="UnsubscribeAll" />
+          <s:enumeration value="HonourExistingUnsubscribes" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DataImporterViaFTPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DataImporterViaFTPResult" type="tns:FTPDataImport" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataImport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dataImportId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataImportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataImportResult" type="tns:FTPDataImport" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataImportControl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="importControl" type="tns:Control" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Control">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Command" type="tns:ControlCommand" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ControlCommand">
+        <s:restriction base="s:string">
+          <s:enumeration value="Authorise" />
+          <s:enumeration value="Pause" />
+          <s:enumeration value="Resume" />
+          <s:enumeration value="Cancel" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DataImportControlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DataImportControlResult" type="tns:FTPDataImport" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateMailingList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mailingList" type="tns:MailingList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MailingList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContactTableId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailingListType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubscriptionType" type="tns:SubscriptionType" />
+          <s:element minOccurs="1" maxOccurs="1" name="FromAddressId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FromName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExternalUnsubscribeLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataTables" type="tns:ArrayOfClientDataTable" />
+          <s:element minOccurs="0" maxOccurs="1" name="Relationships" type="tns:ArrayOfClientTableRelationship" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SubscriptionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="SingleOptIn" />
+          <s:enumeration value="DoubleOptIn" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfClientDataTable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ClientDataTable" nillable="true" type="tns:ClientDataTable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ClientDataTable">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="JoinType" type="tns:TableJoinType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TableJoinType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Inner" />
+          <s:enumeration value="Outer" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfClientTableRelationship">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ClientTableRelationship" nillable="true" type="tns:ClientTableRelationship" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ClientTableRelationship">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Alias" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaryKeyClientTableColumnId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaryKeyClientTableId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ForeignKeyClientTableColumnId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ForeignKeyClientTableId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateMailingListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateMailingListResult" type="tns:MailingList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMailingList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mailingList" type="tns:MailingList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMailingListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateMailingListResult" type="tns:MailingList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailingListResult" type="tns:MailingList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingLists">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMailingListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailingListsResult" type="tns:ArrayOfMailingList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMailingList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MailingList" nillable="true" type="tns:MailingList" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMailingListsForClientTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clientTableId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListsForClientTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailingListsForClientTableResult" type="tns:ArrayOfMailingList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListColumns">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListColumnsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailingListColumnsResult" type="tns:ArrayOfClientTableColumn" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListFromAddresses">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMailingListFromAddressesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailingListFromAddressesResult" type="tns:ArrayOfFromAddress" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFromAddress">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FromAddress" nillable="true" type="tns:FromAddress" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FromAddress">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMailingListCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="subscriberSearchType" type="tns:SubscriberSearchType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="SubscriberSearchType">
+        <s:restriction base="s:string">
+          <s:enumeration value="All" />
+          <s:enumeration value="OnlySubscribed" />
+          <s:enumeration value="OnlyExplicitlyUnsubscribed" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetMailingListCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetMailingListCountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateMailingListFilter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="mailingListFilter" type="tns:MailingListFilter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MailingListFilter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="MailingListId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FilterItems" type="tns:ArrayOfMailingListFilterItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMailingListFilterItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MailingListFilterItem" nillable="true" type="tns:MailingListFilterItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MailingListFilterItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ColumnId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ComparisonColumnId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OperatorId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Condition" type="tns:SqlCondition" />
+          <s:element minOccurs="0" maxOccurs="1" name="Relationship" type="tns:ClientTableRelationship" />
+          <s:element minOccurs="0" maxOccurs="1" name="ComparisonRelationship" type="tns:ClientTableRelationship" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SqlCondition">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="AND" />
+          <s:enumeration value="OR" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CreateMailingListFilterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateMailingListFilterResult" type="tns:MailingListFilter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMailingListFilter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="mailingListFilter" type="tns:MailingListFilter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMailingListFilterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateMailingListFilterResult" type="tns:MailingListFilter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMailingListFilter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListFilterId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMailingListFilterResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMailingListFilter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListFilterId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListFilterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailingListFilterResult" type="tns:MailingListFilter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListFilters">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListFiltersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailingListFiltersResult" type="tns:ArrayOfMailingListFilter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMailingListFilter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MailingListFilter" nillable="true" type="tns:MailingListFilter" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMailingListFilterOperators">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMailingListFilterOperatorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailingListFilterOperatorsResult" type="tns:ArrayOfOperatorInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOperatorInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OperatorInfo" nillable="true" type="tns:OperatorInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OperatorInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FormatString" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMailingListFilterCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListFilterId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="subscriberSearchType" type="tns:SubscriberSearchType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListFilterCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetMailingListFilterCountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListAnalyticsProviders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListAnalyticsProvidersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailingListAnalyticsProvidersResult" type="tns:ArrayOfMailingListAnalyticsProvider" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMailingListAnalyticsProvider">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MailingListAnalyticsProvider" nillable="true" type="tns:MailingListAnalyticsProvider" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MailingListAnalyticsProvider">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProviderName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrackedDomains" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:ArrayOfMailingListAnalyticsProviderParameter" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMailingListAnalyticsProviderParameter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MailingListAnalyticsProviderParameter" nillable="true" type="tns:MailingListAnalyticsProviderParameter" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MailingListAnalyticsProviderParameter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ParameterId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParameterType" type="tns:ParameterType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ParameterType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Ignore" />
+          <s:enumeration value="Column" />
+          <s:enumeration value="Fixed" />
+          <s:enumeration value="Custom" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CreateTableExtract">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="extract" type="tns:TableDataExtract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TableDataExtract">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ExtractBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="TableId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExternalInsertUpdatesOnly" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="FromDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ToDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="GetSuppressions" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" default="false" name="TimePartSignificant" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ExtractBase">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="Bounces" name="Type" type="tns:JobType" />
+          <s:element minOccurs="0" maxOccurs="1" default="Processing" name="Status" type="tns:JobStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="Extended" name="ExtractionScope" type="tns:ExtractionScope" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="CompressFile" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="EncodeAsUTF8" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="RetrieveDeltas" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateStarted" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtractColumns" type="tns:ArrayOfExtractColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="JobType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Bounces" />
+          <s:enumeration value="Opens" />
+          <s:enumeration value="Clicks" />
+          <s:enumeration value="Conversions" />
+          <s:enumeration value="DispatchUnsubscribes" />
+          <s:enumeration value="MailingListUnsubscribes" />
+          <s:enumeration value="MailingList" />
+          <s:enumeration value="TableRecords" />
+          <s:enumeration value="ClicksByLink" />
+          <s:enumeration value="Sent" />
+          <s:enumeration value="SMSDeliveryFailure" />
+          <s:enumeration value="SMSDeliveryExclusion" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="JobStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="New" />
+          <s:enumeration value="Processing" />
+          <s:enumeration value="Complete" />
+          <s:enumeration value="Failed" />
+          <s:enumeration value="Cancelled" />
+          <s:enumeration value="Expired" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ExtractionScope">
+        <s:restriction base="s:string">
+          <s:enumeration value="Standard" />
+          <s:enumeration value="Extended" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfExtractColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ExtractColumn" nillable="true" type="tns:ExtractColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExtractColumn">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ColumnId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RelationshipId" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateTableExtractResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateTableExtractResult" type="tns:TableDataExtract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableExtract">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="extractId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableExtractResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableExtractResult" type="tns:TableDataExtract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateMailingListExtract">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="extract" type="tns:MailingListExtract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MailingListExtract">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ExtractBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="MailingListId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="0" name="MailingListFilterId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="All" name="SubscriberSearchType" type="tns:SubscriberSearchType" />
+              <s:element minOccurs="1" maxOccurs="1" name="FromDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ToDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" default="false" name="TimePartSignificant" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" default="false" name="GetSuppressions" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CreateMailingListExtractResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateMailingListExtractResult" type="tns:MailingListExtract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListExtract">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="extractId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListExtractResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailingListExtractResult" type="tns:MailingListExtract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContactSubscription">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContactSubscriptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContactSubscriptionResult" type="tns:SubscriptionInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SubscriptionInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MailingListId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSubscribed" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateLastAction" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubscriptionSourceType" type="tns:SubscriptionSourceType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SubscriptionSourceType">
+        <s:restriction base="s:string">
+          <s:enumeration value="TestCase" />
+          <s:enumeration value="DataImport" />
+          <s:enumeration value="DataCaptureForm" />
+          <s:enumeration value="ManualEntry" />
+          <s:enumeration value="WebService" />
+          <s:enumeration value="SubscriptionConfirmation" />
+          <s:enumeration value="MobileDataForm" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetContactSubscriptions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="clientTableId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContactSubscriptionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContactSubscriptionsResult" type="tns:ArrayOfSubscriptionInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSubscriptionInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SubscriptionInfo" nillable="true" type="tns:SubscriptionInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateContactSubscription">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subscription" type="tns:SubscriptionInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateContactSubscriptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateContactSubscriptionResult" type="tns:SubscriptionInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateContactSubscriptions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subscriptions" type="tns:ArrayOfSubscriptionInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateContactSubscriptionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateContactSubscriptionsResult" type="tns:ArrayOfSubscriptionInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContactData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tableId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="contactIdentifier" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContactDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContactDataResult" type="tns:DataRecord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRelationships">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRelationshipsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRelationshipsResult" type="tns:ArrayOfClientTableRelationship" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientTableRelationships">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tableId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientTableRelationshipsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientTableRelationshipsResult" type="tns:ArrayOfClientTableRelationship" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListRelationships">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailingListRelationshipsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailingListRelationshipsResult" type="tns:ArrayOfClientTableRelationship" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClientTable" nillable="true" type="tns:ClientTable" />
+      <s:element name="ArrayOfClientTable" nillable="true" type="tns:ArrayOfClientTable" />
+      <s:element name="ArrayOfClientTableColumn" nillable="true" type="tns:ArrayOfClientTableColumn" />
+      <s:element name="FTPDataImport" nillable="true" type="tns:FTPDataImport" />
+      <s:element name="MailingList" nillable="true" type="tns:MailingList" />
+      <s:element name="ArrayOfMailingList" nillable="true" type="tns:ArrayOfMailingList" />
+      <s:element name="ArrayOfFromAddress" nillable="true" type="tns:ArrayOfFromAddress" />
+      <s:element name="int" type="s:int" />
+      <s:element name="MailingListFilter" nillable="true" type="tns:MailingListFilter" />
+      <s:element name="ArrayOfMailingListFilter" nillable="true" type="tns:ArrayOfMailingListFilter" />
+      <s:element name="ArrayOfOperatorInfo" nillable="true" type="tns:ArrayOfOperatorInfo" />
+      <s:element name="ArrayOfMailingListAnalyticsProvider" nillable="true" type="tns:ArrayOfMailingListAnalyticsProvider" />
+      <s:element name="TableDataExtract" nillable="true" type="tns:TableDataExtract" />
+      <s:element name="MailingListExtract" nillable="true" type="tns:MailingListExtract" />
+      <s:element name="SubscriptionInfo" nillable="true" type="tns:SubscriptionInfo" />
+      <s:element name="ArrayOfSubscriptionInfo" nillable="true" type="tns:ArrayOfSubscriptionInfo" />
+      <s:element name="DataRecord" nillable="true" type="tns:DataRecord" />
+      <s:element name="ArrayOfClientTableRelationship" nillable="true" type="tns:ArrayOfClientTableRelationship" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetClientTableSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientTable" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTablesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientTables" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTablesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientTablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTablesCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTablesForMailingListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientTablesForMailingList" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTablesForMailingListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientTablesForMailingListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTablesForMailingListCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableColumnsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientTableColumns" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableColumnsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientTableColumnsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableColumnsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="DataImporterSoapIn">
+    <wsdl:part name="parameters" element="tns:DataImporter" />
+  </wsdl:message>
+  <wsdl:message name="DataImporterSoapOut">
+    <wsdl:part name="parameters" element="tns:DataImporterResponse" />
+  </wsdl:message>
+  <wsdl:message name="DataImporterCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="DataImporterViaFTPSoapIn">
+    <wsdl:part name="parameters" element="tns:DataImporterViaFTP" />
+  </wsdl:message>
+  <wsdl:message name="DataImporterViaFTPSoapOut">
+    <wsdl:part name="parameters" element="tns:DataImporterViaFTPResponse" />
+  </wsdl:message>
+  <wsdl:message name="DataImporterViaFTPCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetDataImportSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataImport" />
+  </wsdl:message>
+  <wsdl:message name="GetDataImportSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataImportCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="DataImportControlSoapIn">
+    <wsdl:part name="parameters" element="tns:DataImportControl" />
+  </wsdl:message>
+  <wsdl:message name="DataImportControlSoapOut">
+    <wsdl:part name="parameters" element="tns:DataImportControlResponse" />
+  </wsdl:message>
+  <wsdl:message name="DataImportControlCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateMailingListSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateMailingList" />
+  </wsdl:message>
+  <wsdl:message name="CreateMailingListSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateMailingListResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateMailingListCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMailingListSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateMailingList" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMailingListSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateMailingListResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMailingListCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailingList" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailingListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailingLists" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailingListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListsForClientTableSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailingListsForClientTable" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListsForClientTableSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailingListsForClientTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListsForClientTableCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListColumnsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailingListColumns" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListColumnsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailingListColumnsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListColumnsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFromAddressesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailingListFromAddresses" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFromAddressesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailingListFromAddressesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFromAddressesCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailingListCount" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailingListCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListCountCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateMailingListFilterSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateMailingListFilter" />
+  </wsdl:message>
+  <wsdl:message name="CreateMailingListFilterSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateMailingListFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateMailingListFilterCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMailingListFilterSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateMailingListFilter" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMailingListFilterSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateMailingListFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMailingListFilterCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMailingListFilterSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteMailingListFilter" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMailingListFilterSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteMailingListFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMailingListFilterCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailingListFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailingListFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFiltersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailingListFilters" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFiltersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailingListFiltersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFiltersCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterOperatorsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailingListFilterOperators" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterOperatorsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailingListFilterOperatorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterOperatorsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailingListFilterCount" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailingListFilterCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterCountCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListAnalyticsProvidersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailingListAnalyticsProviders" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListAnalyticsProvidersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailingListAnalyticsProvidersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListAnalyticsProvidersCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateTableExtractSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTableExtract" />
+  </wsdl:message>
+  <wsdl:message name="CreateTableExtractSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTableExtractResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateTableExtractCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTableExtractSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTableExtract" />
+  </wsdl:message>
+  <wsdl:message name="GetTableExtractSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTableExtractResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTableExtractCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateMailingListExtractSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateMailingListExtract" />
+  </wsdl:message>
+  <wsdl:message name="CreateMailingListExtractSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateMailingListExtractResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateMailingListExtractCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListExtractSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailingListExtract" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListExtractSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailingListExtractResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListExtractCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContactSubscription" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContactSubscriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContactSubscriptions" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContactSubscriptionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContactSubscriptionSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateContactSubscription" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContactSubscriptionSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateContactSubscriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContactSubscriptionCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContactSubscriptionsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateContactSubscriptions" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContactSubscriptionsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateContactSubscriptionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContactSubscriptionsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetContactDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContactData" />
+  </wsdl:message>
+  <wsdl:message name="GetContactDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContactDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContactDataCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetRelationshipsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRelationships" />
+  </wsdl:message>
+  <wsdl:message name="GetRelationshipsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRelationshipsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRelationshipsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableRelationshipsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientTableRelationships" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableRelationshipsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientTableRelationshipsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableRelationshipsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListRelationshipsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMailingListRelationships" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListRelationshipsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailingListRelationshipsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListRelationshipsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableHttpGetIn">
+    <wsdl:part name="clientTableId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableHttpGetOut">
+    <wsdl:part name="Body" element="tns:ClientTable" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTablesHttpGetIn" />
+  <wsdl:message name="GetClientTablesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTable" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTablesForMailingListHttpGetIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTablesForMailingListHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTable" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableColumnsHttpGetIn">
+    <wsdl:part name="clientTableId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableColumnsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTableColumn" />
+  </wsdl:message>
+  <wsdl:message name="GetDataImportHttpGetIn">
+    <wsdl:part name="dataImportId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDataImportHttpGetOut">
+    <wsdl:part name="Body" element="tns:FTPDataImport" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListHttpGetIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListHttpGetOut">
+    <wsdl:part name="Body" element="tns:MailingList" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListsHttpGetIn" />
+  <wsdl:message name="GetMailingListsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMailingList" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListsForClientTableHttpGetIn">
+    <wsdl:part name="clientTableId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListsForClientTableHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMailingList" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListColumnsHttpGetIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListColumnsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTableColumn" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFromAddressesHttpGetIn" />
+  <wsdl:message name="GetMailingListFromAddressesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfFromAddress" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListCountHttpGetIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+    <wsdl:part name="subscriberSearchType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListCountHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMailingListFilterHttpGetIn">
+    <wsdl:part name="mailingListFilterId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMailingListFilterHttpGetOut" />
+  <wsdl:message name="GetMailingListFilterHttpGetIn">
+    <wsdl:part name="mailingListFilterId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterHttpGetOut">
+    <wsdl:part name="Body" element="tns:MailingListFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFiltersHttpGetIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFiltersHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMailingListFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterOperatorsHttpGetIn" />
+  <wsdl:message name="GetMailingListFilterOperatorsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfOperatorInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterCountHttpGetIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+    <wsdl:part name="mailingListFilterId" type="s:string" />
+    <wsdl:part name="subscriberSearchType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterCountHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListAnalyticsProvidersHttpGetIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListAnalyticsProvidersHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMailingListAnalyticsProvider" />
+  </wsdl:message>
+  <wsdl:message name="GetTableExtractHttpGetIn">
+    <wsdl:part name="extractId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTableExtractHttpGetOut">
+    <wsdl:part name="Body" element="tns:TableDataExtract" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListExtractHttpGetIn">
+    <wsdl:part name="extractId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListExtractHttpGetOut">
+    <wsdl:part name="Body" element="tns:MailingListExtract" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionHttpGetIn">
+    <wsdl:part name="emailAddress" type="s:string" />
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionHttpGetOut">
+    <wsdl:part name="Body" element="tns:SubscriptionInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionsHttpGetIn">
+    <wsdl:part name="emailAddress" type="s:string" />
+    <wsdl:part name="clientTableId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSubscriptionInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetContactDataHttpGetIn">
+    <wsdl:part name="tableId" type="s:string" />
+    <wsdl:part name="contactIdentifier" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetContactDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataRecord" />
+  </wsdl:message>
+  <wsdl:message name="GetRelationshipsHttpGetIn" />
+  <wsdl:message name="GetRelationshipsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTableRelationship" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableRelationshipsHttpGetIn">
+    <wsdl:part name="tableId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableRelationshipsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTableRelationship" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListRelationshipsHttpGetIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListRelationshipsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTableRelationship" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableHttpPostIn">
+    <wsdl:part name="clientTableId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableHttpPostOut">
+    <wsdl:part name="Body" element="tns:ClientTable" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTablesHttpPostIn" />
+  <wsdl:message name="GetClientTablesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTable" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTablesForMailingListHttpPostIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTablesForMailingListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTable" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableColumnsHttpPostIn">
+    <wsdl:part name="clientTableId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableColumnsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTableColumn" />
+  </wsdl:message>
+  <wsdl:message name="GetDataImportHttpPostIn">
+    <wsdl:part name="dataImportId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDataImportHttpPostOut">
+    <wsdl:part name="Body" element="tns:FTPDataImport" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListHttpPostIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListHttpPostOut">
+    <wsdl:part name="Body" element="tns:MailingList" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListsHttpPostIn" />
+  <wsdl:message name="GetMailingListsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMailingList" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListsForClientTableHttpPostIn">
+    <wsdl:part name="clientTableId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListsForClientTableHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMailingList" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListColumnsHttpPostIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListColumnsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTableColumn" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFromAddressesHttpPostIn" />
+  <wsdl:message name="GetMailingListFromAddressesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfFromAddress" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListCountHttpPostIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+    <wsdl:part name="subscriberSearchType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListCountHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMailingListFilterHttpPostIn">
+    <wsdl:part name="mailingListFilterId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMailingListFilterHttpPostOut" />
+  <wsdl:message name="GetMailingListFilterHttpPostIn">
+    <wsdl:part name="mailingListFilterId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterHttpPostOut">
+    <wsdl:part name="Body" element="tns:MailingListFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFiltersHttpPostIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFiltersHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMailingListFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterOperatorsHttpPostIn" />
+  <wsdl:message name="GetMailingListFilterOperatorsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfOperatorInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterCountHttpPostIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+    <wsdl:part name="mailingListFilterId" type="s:string" />
+    <wsdl:part name="subscriberSearchType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListFilterCountHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListAnalyticsProvidersHttpPostIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListAnalyticsProvidersHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMailingListAnalyticsProvider" />
+  </wsdl:message>
+  <wsdl:message name="GetTableExtractHttpPostIn">
+    <wsdl:part name="extractId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTableExtractHttpPostOut">
+    <wsdl:part name="Body" element="tns:TableDataExtract" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListExtractHttpPostIn">
+    <wsdl:part name="extractId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListExtractHttpPostOut">
+    <wsdl:part name="Body" element="tns:MailingListExtract" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionHttpPostIn">
+    <wsdl:part name="emailAddress" type="s:string" />
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionHttpPostOut">
+    <wsdl:part name="Body" element="tns:SubscriptionInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionsHttpPostIn">
+    <wsdl:part name="emailAddress" type="s:string" />
+    <wsdl:part name="clientTableId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSubscriptionsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSubscriptionInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetContactDataHttpPostIn">
+    <wsdl:part name="tableId" type="s:string" />
+    <wsdl:part name="contactIdentifier" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetContactDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataRecord" />
+  </wsdl:message>
+  <wsdl:message name="GetRelationshipsHttpPostIn" />
+  <wsdl:message name="GetRelationshipsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTableRelationship" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableRelationshipsHttpPostIn">
+    <wsdl:part name="tableId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClientTableRelationshipsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTableRelationship" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListRelationshipsHttpPostIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailingListRelationshipsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClientTableRelationship" />
+  </wsdl:message>
+  <wsdl:portType name="DataServiceSoap">
+    <wsdl:operation name="GetClientTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a client tables</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTableSoapIn" />
+      <wsdl:output message="tns:GetClientTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTables">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get an array of client tables</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTablesSoapIn" />
+      <wsdl:output message="tns:GetClientTablesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTablesForMailingList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get an array of client tables used in a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTablesForMailingListSoapIn" />
+      <wsdl:output message="tns:GetClientTablesForMailingListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableColumns">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a client table's columns</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTableColumnsSoapIn" />
+      <wsdl:output message="tns:GetClientTableColumnsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DataImporter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import data into a table and return a reponse object</wsdl:documentation>
+      <wsdl:input message="tns:DataImporterSoapIn" />
+      <wsdl:output message="tns:DataImporterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DataImporterViaFTP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import data into a table using a CSV file that has been uploaded to Communicator FTP storage</wsdl:documentation>
+      <wsdl:input message="tns:DataImporterViaFTPSoapIn" />
+      <wsdl:output message="tns:DataImporterViaFTPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataImport">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a data import</wsdl:documentation>
+      <wsdl:input message="tns:GetDataImportSoapIn" />
+      <wsdl:output message="tns:GetDataImportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DataImportControl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Provides a unified method to control a data import</wsdl:documentation>
+      <wsdl:input message="tns:DataImportControlSoapIn" />
+      <wsdl:output message="tns:DataImportControlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateMailingList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a new mailing list</wsdl:documentation>
+      <wsdl:input message="tns:CreateMailingListSoapIn" />
+      <wsdl:output message="tns:CreateMailingListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMailingList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:UpdateMailingListSoapIn" />
+      <wsdl:output message="tns:UpdateMailingListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListSoapIn" />
+      <wsdl:output message="tns:GetMailingListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingLists">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing lists</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListsSoapIn" />
+      <wsdl:output message="tns:GetMailingListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListsForClientTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing lists associated to a client table</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListsForClientTableSoapIn" />
+      <wsdl:output message="tns:GetMailingListsForClientTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListColumns">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing list columns</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListColumnsSoapIn" />
+      <wsdl:output message="tns:GetMailingListColumnsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFromAddresses">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of available from addresses</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFromAddressesSoapIn" />
+      <wsdl:output message="tns:GetMailingListFromAddressesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListCount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a count of records on a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListCountSoapIn" />
+      <wsdl:output message="tns:GetMailingListCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateMailingListFilter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a new mailing list filter</wsdl:documentation>
+      <wsdl:input message="tns:CreateMailingListFilterSoapIn" />
+      <wsdl:output message="tns:CreateMailingListFilterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMailingListFilter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Updates an existing mailing list filter</wsdl:documentation>
+      <wsdl:input message="tns:UpdateMailingListFilterSoapIn" />
+      <wsdl:output message="tns:UpdateMailingListFilterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMailingListFilter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a mailing list filter</wsdl:documentation>
+      <wsdl:input message="tns:DeleteMailingListFilterSoapIn" />
+      <wsdl:output message="tns:DeleteMailingListFilterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a mailing list filter</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFilterSoapIn" />
+      <wsdl:output message="tns:GetMailingListFilterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilters">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing list filters</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFiltersSoapIn" />
+      <wsdl:output message="tns:GetMailingListFiltersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterOperators">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing list filter operators</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFilterOperatorsSoapIn" />
+      <wsdl:output message="tns:GetMailingListFilterOperatorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterCount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a count of records on a mailing list filter</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFilterCountSoapIn" />
+      <wsdl:output message="tns:GetMailingListFilterCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListAnalyticsProviders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the Analytics providers configured on a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListAnalyticsProvidersSoapIn" />
+      <wsdl:output message="tns:GetMailingListAnalyticsProvidersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTableExtract">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new table extract</wsdl:documentation>
+      <wsdl:input message="tns:CreateTableExtractSoapIn" />
+      <wsdl:output message="tns:CreateTableExtractSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTableExtract">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an existing table extract</wsdl:documentation>
+      <wsdl:input message="tns:GetTableExtractSoapIn" />
+      <wsdl:output message="tns:GetTableExtractSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateMailingListExtract">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new mailing list extract</wsdl:documentation>
+      <wsdl:input message="tns:CreateMailingListExtractSoapIn" />
+      <wsdl:output message="tns:CreateMailingListExtractSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListExtract">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an existing mailing list extract</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListExtractSoapIn" />
+      <wsdl:output message="tns:GetMailingListExtractSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscription">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a mailing list subscription for a contact</wsdl:documentation>
+      <wsdl:input message="tns:GetContactSubscriptionSoapIn" />
+      <wsdl:output message="tns:GetContactSubscriptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscriptions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets all mailing list subscriptions for a contact in a table</wsdl:documentation>
+      <wsdl:input message="tns:GetContactSubscriptionsSoapIn" />
+      <wsdl:output message="tns:GetContactSubscriptionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactSubscription">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update a contact mailing list subscription</wsdl:documentation>
+      <wsdl:input message="tns:UpdateContactSubscriptionSoapIn" />
+      <wsdl:output message="tns:UpdateContactSubscriptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactSubscriptions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update multiple contact mailing list subscriptions</wsdl:documentation>
+      <wsdl:input message="tns:UpdateContactSubscriptionsSoapIn" />
+      <wsdl:output message="tns:UpdateContactSubscriptionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a contact's data from a table using an identifier</wsdl:documentation>
+      <wsdl:input message="tns:GetContactDataSoapIn" />
+      <wsdl:output message="tns:GetContactDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRelationships">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of all client relationships</wsdl:documentation>
+      <wsdl:input message="tns:GetRelationshipsSoapIn" />
+      <wsdl:output message="tns:GetRelationshipsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableRelationships">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of relationships for a table</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTableRelationshipsSoapIn" />
+      <wsdl:output message="tns:GetClientTableRelationshipsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListRelationships">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of relationships for a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListRelationshipsSoapIn" />
+      <wsdl:output message="tns:GetMailingListRelationshipsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DataServiceHttpGet">
+    <wsdl:operation name="GetClientTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a client tables</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTableHttpGetIn" />
+      <wsdl:output message="tns:GetClientTableHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTables">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get an array of client tables</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTablesHttpGetIn" />
+      <wsdl:output message="tns:GetClientTablesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTablesForMailingList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get an array of client tables used in a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTablesForMailingListHttpGetIn" />
+      <wsdl:output message="tns:GetClientTablesForMailingListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableColumns">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a client table's columns</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTableColumnsHttpGetIn" />
+      <wsdl:output message="tns:GetClientTableColumnsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataImport">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a data import</wsdl:documentation>
+      <wsdl:input message="tns:GetDataImportHttpGetIn" />
+      <wsdl:output message="tns:GetDataImportHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListHttpGetIn" />
+      <wsdl:output message="tns:GetMailingListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingLists">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing lists</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListsHttpGetIn" />
+      <wsdl:output message="tns:GetMailingListsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListsForClientTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing lists associated to a client table</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListsForClientTableHttpGetIn" />
+      <wsdl:output message="tns:GetMailingListsForClientTableHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListColumns">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing list columns</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListColumnsHttpGetIn" />
+      <wsdl:output message="tns:GetMailingListColumnsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFromAddresses">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of available from addresses</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFromAddressesHttpGetIn" />
+      <wsdl:output message="tns:GetMailingListFromAddressesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListCount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a count of records on a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListCountHttpGetIn" />
+      <wsdl:output message="tns:GetMailingListCountHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMailingListFilter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a mailing list filter</wsdl:documentation>
+      <wsdl:input message="tns:DeleteMailingListFilterHttpGetIn" />
+      <wsdl:output message="tns:DeleteMailingListFilterHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a mailing list filter</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFilterHttpGetIn" />
+      <wsdl:output message="tns:GetMailingListFilterHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilters">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing list filters</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFiltersHttpGetIn" />
+      <wsdl:output message="tns:GetMailingListFiltersHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterOperators">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing list filter operators</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFilterOperatorsHttpGetIn" />
+      <wsdl:output message="tns:GetMailingListFilterOperatorsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterCount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a count of records on a mailing list filter</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFilterCountHttpGetIn" />
+      <wsdl:output message="tns:GetMailingListFilterCountHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListAnalyticsProviders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the Analytics providers configured on a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListAnalyticsProvidersHttpGetIn" />
+      <wsdl:output message="tns:GetMailingListAnalyticsProvidersHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTableExtract">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an existing table extract</wsdl:documentation>
+      <wsdl:input message="tns:GetTableExtractHttpGetIn" />
+      <wsdl:output message="tns:GetTableExtractHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListExtract">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an existing mailing list extract</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListExtractHttpGetIn" />
+      <wsdl:output message="tns:GetMailingListExtractHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscription">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a mailing list subscription for a contact</wsdl:documentation>
+      <wsdl:input message="tns:GetContactSubscriptionHttpGetIn" />
+      <wsdl:output message="tns:GetContactSubscriptionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscriptions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets all mailing list subscriptions for a contact in a table</wsdl:documentation>
+      <wsdl:input message="tns:GetContactSubscriptionsHttpGetIn" />
+      <wsdl:output message="tns:GetContactSubscriptionsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a contact's data from a table using an identifier</wsdl:documentation>
+      <wsdl:input message="tns:GetContactDataHttpGetIn" />
+      <wsdl:output message="tns:GetContactDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRelationships">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of all client relationships</wsdl:documentation>
+      <wsdl:input message="tns:GetRelationshipsHttpGetIn" />
+      <wsdl:output message="tns:GetRelationshipsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableRelationships">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of relationships for a table</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTableRelationshipsHttpGetIn" />
+      <wsdl:output message="tns:GetClientTableRelationshipsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListRelationships">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of relationships for a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListRelationshipsHttpGetIn" />
+      <wsdl:output message="tns:GetMailingListRelationshipsHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DataServiceHttpPost">
+    <wsdl:operation name="GetClientTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a client tables</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTableHttpPostIn" />
+      <wsdl:output message="tns:GetClientTableHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTables">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get an array of client tables</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTablesHttpPostIn" />
+      <wsdl:output message="tns:GetClientTablesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTablesForMailingList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get an array of client tables used in a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTablesForMailingListHttpPostIn" />
+      <wsdl:output message="tns:GetClientTablesForMailingListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableColumns">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a client table's columns</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTableColumnsHttpPostIn" />
+      <wsdl:output message="tns:GetClientTableColumnsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataImport">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a data import</wsdl:documentation>
+      <wsdl:input message="tns:GetDataImportHttpPostIn" />
+      <wsdl:output message="tns:GetDataImportHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListHttpPostIn" />
+      <wsdl:output message="tns:GetMailingListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingLists">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing lists</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListsHttpPostIn" />
+      <wsdl:output message="tns:GetMailingListsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListsForClientTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing lists associated to a client table</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListsForClientTableHttpPostIn" />
+      <wsdl:output message="tns:GetMailingListsForClientTableHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListColumns">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing list columns</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListColumnsHttpPostIn" />
+      <wsdl:output message="tns:GetMailingListColumnsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFromAddresses">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of available from addresses</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFromAddressesHttpPostIn" />
+      <wsdl:output message="tns:GetMailingListFromAddressesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListCount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a count of records on a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListCountHttpPostIn" />
+      <wsdl:output message="tns:GetMailingListCountHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMailingListFilter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a mailing list filter</wsdl:documentation>
+      <wsdl:input message="tns:DeleteMailingListFilterHttpPostIn" />
+      <wsdl:output message="tns:DeleteMailingListFilterHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a mailing list filter</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFilterHttpPostIn" />
+      <wsdl:output message="tns:GetMailingListFilterHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilters">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing list filters</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFiltersHttpPostIn" />
+      <wsdl:output message="tns:GetMailingListFiltersHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterOperators">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of mailing list filter operators</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFilterOperatorsHttpPostIn" />
+      <wsdl:output message="tns:GetMailingListFilterOperatorsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterCount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a count of records on a mailing list filter</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListFilterCountHttpPostIn" />
+      <wsdl:output message="tns:GetMailingListFilterCountHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListAnalyticsProviders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the Analytics providers configured on a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListAnalyticsProvidersHttpPostIn" />
+      <wsdl:output message="tns:GetMailingListAnalyticsProvidersHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTableExtract">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an existing table extract</wsdl:documentation>
+      <wsdl:input message="tns:GetTableExtractHttpPostIn" />
+      <wsdl:output message="tns:GetTableExtractHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListExtract">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an existing mailing list extract</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListExtractHttpPostIn" />
+      <wsdl:output message="tns:GetMailingListExtractHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscription">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a mailing list subscription for a contact</wsdl:documentation>
+      <wsdl:input message="tns:GetContactSubscriptionHttpPostIn" />
+      <wsdl:output message="tns:GetContactSubscriptionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscriptions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets all mailing list subscriptions for a contact in a table</wsdl:documentation>
+      <wsdl:input message="tns:GetContactSubscriptionsHttpPostIn" />
+      <wsdl:output message="tns:GetContactSubscriptionsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a contact's data from a table using an identifier</wsdl:documentation>
+      <wsdl:input message="tns:GetContactDataHttpPostIn" />
+      <wsdl:output message="tns:GetContactDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRelationships">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of all client relationships</wsdl:documentation>
+      <wsdl:input message="tns:GetRelationshipsHttpPostIn" />
+      <wsdl:output message="tns:GetRelationshipsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableRelationships">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of relationships for a table</wsdl:documentation>
+      <wsdl:input message="tns:GetClientTableRelationshipsHttpPostIn" />
+      <wsdl:output message="tns:GetClientTableRelationshipsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListRelationships">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of relationships for a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetMailingListRelationshipsHttpPostIn" />
+      <wsdl:output message="tns:GetMailingListRelationshipsHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DataServiceSoap" type="tns:DataServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetClientTable">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetClientTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientTableCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTables">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetClientTables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientTablesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTablesForMailingList">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetClientTablesForMailingList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientTablesForMailingListCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableColumns">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetClientTableColumns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientTableColumnsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DataImporter">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/DataImporter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DataImporterCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DataImporterViaFTP">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/DataImporterViaFTP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DataImporterViaFTPCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataImport">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetDataImport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDataImportCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DataImportControl">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/DataImportControl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DataImportControlCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMailingList">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/CreateMailingList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateMailingListCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMailingList">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/UpdateMailingList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateMailingListCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingList">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetMailingList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMailingListCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingLists">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetMailingLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMailingListsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListsForClientTable">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetMailingListsForClientTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMailingListsForClientTableCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListColumns">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetMailingListColumns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMailingListColumnsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFromAddresses">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetMailingListFromAddresses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMailingListFromAddressesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListCount">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetMailingListCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMailingListCountCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMailingListFilter">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/CreateMailingListFilter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateMailingListFilterCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMailingListFilter">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/UpdateMailingListFilter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateMailingListFilterCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMailingListFilter">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/DeleteMailingListFilter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteMailingListFilterCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilter">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetMailingListFilter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMailingListFilterCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilters">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetMailingListFilters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMailingListFiltersCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterOperators">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetMailingListFilterOperators" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMailingListFilterOperatorsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterCount">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetMailingListFilterCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMailingListFilterCountCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListAnalyticsProviders">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetMailingListAnalyticsProviders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMailingListAnalyticsProvidersCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTableExtract">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/CreateTableExtract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateTableExtractCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableExtract">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetTableExtract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTableExtractCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMailingListExtract">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/CreateMailingListExtract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateMailingListExtractCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListExtract">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetMailingListExtract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMailingListExtractCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscription">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetContactSubscription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetContactSubscriptionCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscriptions">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetContactSubscriptions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetContactSubscriptionsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactSubscription">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/UpdateContactSubscription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateContactSubscriptionCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactSubscriptions">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/UpdateContactSubscriptions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateContactSubscriptionsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactData">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetContactData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetContactDataCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRelationships">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetRelationships" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRelationshipsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableRelationships">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetClientTableRelationships" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientTableRelationshipsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListRelationships">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetMailingListRelationships" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMailingListRelationshipsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DataServiceSoap12" type="tns:DataServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetClientTable">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetClientTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientTableCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTables">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetClientTables" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientTablesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTablesForMailingList">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetClientTablesForMailingList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientTablesForMailingListCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableColumns">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetClientTableColumns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientTableColumnsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DataImporter">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/DataImporter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DataImporterCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DataImporterViaFTP">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/DataImporterViaFTP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DataImporterViaFTPCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataImport">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetDataImport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDataImportCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DataImportControl">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/DataImportControl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DataImportControlCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMailingList">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/CreateMailingList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateMailingListCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMailingList">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/UpdateMailingList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateMailingListCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingList">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetMailingList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMailingListCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingLists">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetMailingLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMailingListsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListsForClientTable">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetMailingListsForClientTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMailingListsForClientTableCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListColumns">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetMailingListColumns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMailingListColumnsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFromAddresses">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetMailingListFromAddresses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMailingListFromAddressesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListCount">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetMailingListCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMailingListCountCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMailingListFilter">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/CreateMailingListFilter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateMailingListFilterCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMailingListFilter">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/UpdateMailingListFilter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateMailingListFilterCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMailingListFilter">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/DeleteMailingListFilter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteMailingListFilterCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilter">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetMailingListFilter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMailingListFilterCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilters">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetMailingListFilters" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMailingListFiltersCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterOperators">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetMailingListFilterOperators" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMailingListFilterOperatorsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterCount">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetMailingListFilterCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMailingListFilterCountCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListAnalyticsProviders">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetMailingListAnalyticsProviders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMailingListAnalyticsProvidersCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTableExtract">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/CreateTableExtract" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateTableExtractCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableExtract">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetTableExtract" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTableExtractCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMailingListExtract">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/CreateMailingListExtract" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateMailingListExtractCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListExtract">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetMailingListExtract" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMailingListExtractCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscription">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetContactSubscription" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetContactSubscriptionCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscriptions">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetContactSubscriptions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetContactSubscriptionsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactSubscription">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/UpdateContactSubscription" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateContactSubscriptionCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactSubscriptions">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/UpdateContactSubscriptions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateContactSubscriptionsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactData">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetContactData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetContactDataCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRelationships">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetRelationships" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRelationshipsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableRelationships">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetClientTableRelationships" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientTableRelationshipsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListRelationships">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetMailingListRelationships" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMailingListRelationshipsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DataServiceHttpGet" type="tns:DataServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetClientTable">
+      <http:operation location="/GetClientTable" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTables">
+      <http:operation location="/GetClientTables" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTablesForMailingList">
+      <http:operation location="/GetClientTablesForMailingList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableColumns">
+      <http:operation location="/GetClientTableColumns" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataImport">
+      <http:operation location="/GetDataImport" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingList">
+      <http:operation location="/GetMailingList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingLists">
+      <http:operation location="/GetMailingLists" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListsForClientTable">
+      <http:operation location="/GetMailingListsForClientTable" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListColumns">
+      <http:operation location="/GetMailingListColumns" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFromAddresses">
+      <http:operation location="/GetMailingListFromAddresses" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListCount">
+      <http:operation location="/GetMailingListCount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMailingListFilter">
+      <http:operation location="/DeleteMailingListFilter" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilter">
+      <http:operation location="/GetMailingListFilter" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilters">
+      <http:operation location="/GetMailingListFilters" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterOperators">
+      <http:operation location="/GetMailingListFilterOperators" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterCount">
+      <http:operation location="/GetMailingListFilterCount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListAnalyticsProviders">
+      <http:operation location="/GetMailingListAnalyticsProviders" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableExtract">
+      <http:operation location="/GetTableExtract" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListExtract">
+      <http:operation location="/GetMailingListExtract" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscription">
+      <http:operation location="/GetContactSubscription" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscriptions">
+      <http:operation location="/GetContactSubscriptions" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactData">
+      <http:operation location="/GetContactData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRelationships">
+      <http:operation location="/GetRelationships" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableRelationships">
+      <http:operation location="/GetClientTableRelationships" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListRelationships">
+      <http:operation location="/GetMailingListRelationships" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DataServiceHttpPost" type="tns:DataServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetClientTable">
+      <http:operation location="/GetClientTable" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTables">
+      <http:operation location="/GetClientTables" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTablesForMailingList">
+      <http:operation location="/GetClientTablesForMailingList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableColumns">
+      <http:operation location="/GetClientTableColumns" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataImport">
+      <http:operation location="/GetDataImport" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingList">
+      <http:operation location="/GetMailingList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingLists">
+      <http:operation location="/GetMailingLists" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListsForClientTable">
+      <http:operation location="/GetMailingListsForClientTable" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListColumns">
+      <http:operation location="/GetMailingListColumns" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFromAddresses">
+      <http:operation location="/GetMailingListFromAddresses" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListCount">
+      <http:operation location="/GetMailingListCount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMailingListFilter">
+      <http:operation location="/DeleteMailingListFilter" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilter">
+      <http:operation location="/GetMailingListFilter" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilters">
+      <http:operation location="/GetMailingListFilters" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterOperators">
+      <http:operation location="/GetMailingListFilterOperators" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListFilterCount">
+      <http:operation location="/GetMailingListFilterCount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListAnalyticsProviders">
+      <http:operation location="/GetMailingListAnalyticsProviders" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableExtract">
+      <http:operation location="/GetTableExtract" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListExtract">
+      <http:operation location="/GetMailingListExtract" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscription">
+      <http:operation location="/GetContactSubscription" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactSubscriptions">
+      <http:operation location="/GetContactSubscriptions" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactData">
+      <http:operation location="/GetContactData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRelationships">
+      <http:operation location="/GetRelationships" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientTableRelationships">
+      <http:operation location="/GetClientTableRelationships" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMailingListRelationships">
+      <http:operation location="/GetMailingListRelationships" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataService">
+    <wsdl:port name="DataServiceSoap" binding="tns:DataServiceSoap">
+      <soap:address location="https://ws.communicatorcorp.com/DataService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DataServiceSoap12" binding="tns:DataServiceSoap12">
+      <soap12:address location="https://ws.communicatorcorp.com/DataService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DataServiceHttpGet" binding="tns:DataServiceHttpGet">
+      <http:address location="https://ws.communicatorcorp.com/DataService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DataServiceHttpPost" binding="tns:DataServiceHttpPost">
+      <http:address location="https://ws.communicatorcorp.com/DataService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
