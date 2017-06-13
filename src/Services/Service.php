@@ -2,6 +2,7 @@
 
 namespace GroundSix\Communicator\Services;
 
+use GroundSix\Communicator\Exceptions\BadResponseException;
 use GroundSix\Communicator\Resources\Credentials;
 use SoapClient;
 

@@ -3,7 +3,7 @@
 namespace GroundSix\Communicator\DataService;
 
 use GroundSix\Communicator\Enum\ImportResult;
-use GroundSix\Communicator\Exceptions\BadResponseFormat;
+use GroundSix\Communicator\Exceptions\BadResponseException;
 use GroundSix\Communicator\Exceptions\DataImporterException;
 use GroundSix\Communicator\Resources\ColumnMapping;
 use GroundSix\Communicator\Resources\DataImport;
@@ -53,11 +53,6 @@ class AddContact
 
     public function formatResponse(stdClass $response)
     {
-        try {
-            $this::rules()->assert($response);
-        } catch (ValidationException $e) {
-            throw new BadResponseFormat('The response from Communicator was not formatted as expected.', 0, $e);
-        }
         $this->response = $response;
         $this->checkForErrors();
 
@@ -65,7 +60,7 @@ class AddContact
     }
 
     /**
-     * @throws BadResponseFormat
+     * @throws BadResponseException
      */
     protected function checkForErrors()
     {

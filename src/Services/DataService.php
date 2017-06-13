@@ -3,7 +3,7 @@
 namespace GroundSix\Communicator\Services;
 
 use GroundSix\Communicator\DataService\AddContact;
-use GroundSix\Communicator\Exceptions\BadResponseFormat;
+use GroundSix\Communicator\Exceptions\BadResponseException;
 use GroundSix\Communicator\Exceptions\DataImporterException;
 use SoapClient;
 

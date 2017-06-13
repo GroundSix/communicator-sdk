@@ -4,7 +4,7 @@ namespace GroundSix\Communicator\Test\DataService;
 
 use GroundSix\Communicator\DataService\AddContact;
 use GroundSix\Communicator\DataService\DataImporter;
-use GroundSix\Communicator\Exceptions\BadResponseFormat;
+use GroundSix\Communicator\Exceptions\BadResponseException;
 use GroundSix\Communicator\Exceptions\DataImporterException;
 use GroundSix\Communicator\Resources\ColumnMapping;
 use GroundSix\Communicator\Resources\DataImport;
@@ -53,8 +53,7 @@ class AddContactTest extends TestCase
      */
     public function it_throws_an_exception_if_the_response_is_badly_formatted()
     {
-        $this->expectException(BadResponseFormat::class);
-        $this->expectExceptionMessage('The response from Communicator was not formatted as expected.');
+        $this->expectException(BadResponseException::class);
 
         $this->partialMock->formatResponse(new \stdClass());
     }
