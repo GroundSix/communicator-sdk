@@ -9,8 +9,6 @@ use GroundSix\Communicator\Resources\ColumnMapping;
 use GroundSix\Communicator\Resources\DataImport;
 use GroundSix\Communicator\Resources\DataRecord;
 use GroundSix\Communicator\Resources\Subscription;
-use Respect\Validation\Exceptions\ValidationException;
-use Respect\Validation\Validator as V;
 use stdClass;
 
 class AddContact
@@ -82,42 +80,4 @@ class AddContact
         };
     }
 
-    public static function rules()
-    {
-        $importResponseDetail = V::allOf(
-            V::attribute('Row', V::intType()),
-            V::attribute('Result', V::stringType()->in(ImportResult::toArray())),
-            V::when(
-                V::attribute('Result', V::stringType()->not(
-                    V::in(static::SUCCESS_CODES)
-                )),
-                V::attribute('Response', V::stringType()->notEmpty()),
-                V::attribute('Response', V::alwaysValid())
-            )
-        );
-
-        $topLevelDetail = V::allOf(
-            V::attribute('ImportResultType', V::stringType()->in(ImportResult::toArray())),
-            V::attribute('ImportResultCount', V::intType())
-        );
-
-        return V::attribute('DataImporterResult',
-            V::allOf(
-                V::attribute('ImportDetails',
-                    V::attribute('DataImportResponseDetail',
-                        V::arrayVal()->each($importResponseDetail)
-                    ),
-                    false
-                ),
-                V::attribute('ImportTopLevel',
-                    V::attribute('TopLevelDetail',
-                        V::attribute('TopLevelDetailItem',
-                            V::arrayVal()->each($topLevelDetail)
-                        )
-                    ),
-                    false
-                )
-            )
-        );
-    }
 }
