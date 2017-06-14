@@ -1,7 +1,8 @@
 <?php
 
-namespace GroundSix\Communicator\Resources;
+namespace GroundSix\Communicator;
 
+use GroundSix\Communicator\Resources\Resource;
 use SoapHeader;
 use SoapVar;
 
@@ -11,9 +12,9 @@ class Credentials extends Resource
     const HEADER_NAME = 'CommunicatorCredentials';
 
     /** @var  string */
-    public $Username;
+    private $Username;
     /** @var  string */
-    public $Password;
+    private $Password;
 
     /**
      * @param string $username
