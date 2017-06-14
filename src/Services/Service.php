@@ -3,37 +3,26 @@
 namespace GroundSix\Communicator\Services;
 
 use GroundSix\Communicator\Exceptions\BadResponseException;
-use GroundSix\Communicator\Resources\Credentials;
 use SoapClient;
 
 abstract class Service
 {
     const NAMESPACE = 'http://ws.communicatorcorp.com/';
-
     /** @var SoapClient */
-    protected $client;
-    /** @var Credentials */
-    protected $credentials;
+    private $client;
     /** @var Validator */
     protected $validator;
 
     /**
      * Service constructor.
      *
-     * @param Credentials $credentials
-     * @param SoapClient  $client
+     * @param SoapClient $client
+     * @param Validtor   $validator
      */
-    public function __construct(Credentials $credentials, SoapClient $client = null)
+    public function __construct(SoapClient $client, Validator $validator)
     {
-        $this->credentials = $credentials;
-
-        if ($client === null) {
-            $client = static::makeClient();
-        }
         $this->client = $client;
-        $this->client->__setSoapHeaders($credentials->getHeader());
-
-        $this->validator = new Validator(static::xsdPath());
+        $this->validator = $validator;
     }
 
     /**
@@ -49,7 +38,11 @@ abstract class Service
         return $this->validator->validate($response);
     }
 
-    abstract public static function makeClient(): SoapClient;
+    protected function sendRequest($name, $request = null)
+    {
+        $response = $this->client->$name($request);
+        $this->validate();
 
-    abstract protected static function xsdPath(): string;
+        return $response;
+    }
 }
