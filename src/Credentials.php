@@ -12,9 +12,9 @@ class Credentials extends Resource
     const HEADER_NAME = 'CommunicatorCredentials';
 
     /** @var  string */
-    private $Username;
+    private $username;
     /** @var  string */
-    private $Password;
+    private $password;
 
     /**
      * @param string $username
@@ -22,8 +22,8 @@ class Credentials extends Resource
      */
     public function __construct(string $username, string $password)
     {
-        $this->Username = $username;
-        $this->Password = $password;
+        $this->username = $username;
+        $this->password = $password;
     }
 
     /**
@@ -38,8 +38,8 @@ class Credentials extends Resource
     {
         $data = new SoapVar(
             [
-                new SoapVar($this->Username, XSD_STRING, null, null, 'Username', self::NAMESPACE),
-                new SoapVar($this->Password, XSD_STRING, null, null, 'Password', self::NAMESPACE),
+                new SoapVar($this->username, XSD_STRING, null, null, 'Username', self::NAMESPACE),
+                new SoapVar($this->password, XSD_STRING, null, null, 'Password', self::NAMESPACE),
             ],
             SOAP_ENC_OBJECT
         );

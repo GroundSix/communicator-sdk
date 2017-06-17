@@ -1,9 +1,8 @@
 <?php
 
-namespace GroundSix\Communicator\Test\Resources;
+namespace GroundSix\Communicator\Test;
 
-use GroundSix\Communicator\Resources\Credentials;
-use PHPUnit\Framework\TestCase;
+use GroundSix\Communicator\Credentials;
 use SoapHeader;
 use SoapVar;
 
@@ -21,26 +20,6 @@ class CommunicatorCredentialsTest extends TestCase
     {
         parent::setUpBeforeClass();
         static::$credentials = new Credentials('adam', '86b8f9a8bede');
-    }
-
-    /**
-     * @test
-     */
-    public function it_stores_the_username_in_the_Username_property()
-    {
-        $credentials = self::$credentials;
-
-        $this->assertEquals('adam', $credentials->Username);
-    }
-
-    /**
-     * @test
-     */
-    public function it_stores_the_password_in_the_Password_property()
-    {
-        $credentials = self::$credentials;
-
-        $this->assertEquals('86b8f9a8bede', $credentials->Password);
     }
 
     /**
