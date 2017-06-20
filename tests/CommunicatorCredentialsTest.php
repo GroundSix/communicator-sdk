@@ -3,6 +3,7 @@
 namespace GroundSix\Communicator\Test;
 
 use GroundSix\Communicator\Credentials;
+use PHPUnit\Framework\TestCase;
 use SoapHeader;
 use SoapVar;
 
