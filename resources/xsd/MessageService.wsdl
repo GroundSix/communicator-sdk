@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+          xmlns:tns="http://ws.communicatorcorp.com/"
+          targetNamespace="http://ws.communicatorcorp.com/"
+          elementFormDefault="qualified">
+    <xsd:element name="CreatePlainTextEmail">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="message" type="tns:MessageBody"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="MessageBody">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="MailingListId" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Description" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="PlainText" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="HtmlText" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CreatePlainTextEmailResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="CreatePlainTextEmailResult" type="tns:MessageBody"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CommunicatorCredentials" type="tns:CommunicatorCredentials"/>
+    <xsd:complexType name="CommunicatorCredentials">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Username" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Password" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:anyAttribute/>
+    </xsd:complexType>
+    <xsd:element name="CreateHtmlEmail">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="message" type="tns:MessageBody"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CreateHtmlEmailResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="CreateHtmlEmailResult" type="tns:MessageBody"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetEmails">
+        <xsd:complexType/>
+    </xsd:element>
+    <xsd:element name="GetEmailsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetEmailsResult" type="tns:ArrayOfMessageBody"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfMessageBody">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="MessageBody" nillable="true" type="tns:MessageBody"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetEmail">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="emailId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetEmailResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetEmailResult" type="tns:MessageBody"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetEmailList">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="pageOption" type="tns:PageOption"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="PageOption">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="StartIndex" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="PageSize" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Order" nillable="true" type="tns:SortOrder"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="SortOrder">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="OldestFirst"/>
+            <xsd:enumeration value="NewestFirst"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="GetEmailListResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetEmailListResult" type="tns:ArrayOfEmailDetail"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfEmailDetail">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="EmailDetail" nillable="true" type="tns:EmailDetail"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="EmailDetail">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="MailingListId" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Description" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DateCreated" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DateEdited" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CreateTextMessage">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="message" type="tns:TextMessage"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="TextMessage">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MailingListId" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="" name="Name" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="" name="Description" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="" name="Message" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CreateTextMessageResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="CreateTextMessageResult" type="tns:TextMessage"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetTextMessage">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="textMessageId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetTextMessageResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetTextMessageResult" type="tns:TextMessage"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetTextMessages">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="startIndex" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetTextMessagesResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetTextMessagesResult" type="tns:ArrayOfTextMessage"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfTextMessage">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="TextMessage" nillable="true" type="tns:TextMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetTriggeredDispatches">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="startIndex" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetTriggeredDispatchesResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetTriggeredDispatchesResult" type="tns:ArrayOfDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfDispatch">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Dispatch" nillable="true" type="tns:Dispatch"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Dispatch">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="" name="MailingType" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="" name="Status" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="" name="DateScheduled" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ListSize" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TotalSuccess" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TotalFailed" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IsTest" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetUnauthorisedDispatches">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="startIndex" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetUnauthorisedDispatchesResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetUnauthorisedDispatchesResult"
+                           type="tns:ArrayOfDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="DispatchControl">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="control" type="tns:Control"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="Control">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Command" type="tns:ControlCommand"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="ControlCommand">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Authorise"/>
+            <xsd:enumeration value="Pause"/>
+            <xsd:enumeration value="Resume"/>
+            <xsd:enumeration value="Cancel"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="DispatchControlResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="DispatchControlResult" type="tns:Dispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CreateEmailDispatch">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="emailDispatch" type="tns:EmailDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="EmailDispatch">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="EmailId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="MailingListId" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FilterId" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="FromName" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="FromAddress" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="SubjectLine" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Status" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ReplyForwardingAddress" type="xsd:string"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TrackHtmlLinks" type="xsd:boolean"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TrackPlainLinks" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="IndicatedListSize" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TotalProcessed" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TotalSuccess" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TotalFailed" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ScheduledDate" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DateStarted" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DateCompleted" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="CreatedBy" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DateCreated" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="LastAuthorisedBy" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="LastAuthorisedDate" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="TimeZone" type="tns:TimeZone"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IsTriggeredDispatch" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IsTest" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="EnableConversionTracking" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="EnableAnalytics" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TimeZone">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Description" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CreateEmailDispatchResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="CreateEmailDispatchResult" type="tns:EmailDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetUnauthorisedEmailDispatches">
+        <xsd:complexType/>
+    </xsd:element>
+    <xsd:element name="GetUnauthorisedEmailDispatchesResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetUnauthorisedEmailDispatchesResult"
+                           type="tns:ArrayOfEmailDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfEmailDispatch">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="EmailDispatch" nillable="true"
+                       type="tns:EmailDispatch"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="EmailDispatchControl">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="dispatchControl" type="tns:Control"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="EmailDispatchControlResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="EmailDispatchControlResult" type="tns:EmailDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetTriggerDispatches">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="mailingListId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetTriggerDispatchesResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetTriggerDispatchesResult"
+                           type="tns:ArrayOfEmailDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CreateTextDispatch">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="textDispatch" type="tns:TextDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="TextDispatch">
+        <xsd:complexContent mixed="false">
+            <xsd:extension base="tns:DispatchDetails">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TextMessageId" type="xsd:int"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MaximumPagesPerRecipient"
+                               type="xsd:unsignedByte"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="true" name="AllowSpecialCharacters"
+                               type="xsd:boolean"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="DispatchDetails" abstract="true">
+        <xsd:complexContent mixed="false">
+            <xsd:extension base="tns:Dispatch">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MailingListId" type="xsd:int"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MailingListFilterId" type="xsd:int"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="" name="FromName" type="xsd:string"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="" name="TimeZoneName" type="xsd:string"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IsTriggeredDispatch" type="xsd:boolean"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="CreateTextDispatchResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="CreateTextDispatchResult" type="tns:TextDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetTextDispatch">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="textDispatchId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetTextDispatchResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetTextDispatchResult" type="tns:TextDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetTimeZones">
+        <xsd:complexType/>
+    </xsd:element>
+    <xsd:element name="GetTimeZonesResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetTimeZonesResult" type="tns:ArrayOfTimeZone"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfTimeZone">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="TimeZone" nillable="true" type="tns:TimeZone"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ArrayOfMessageBody" nillable="true" type="tns:ArrayOfMessageBody"/>
+    <xsd:element name="MessageBody" nillable="true" type="tns:MessageBody"/>
+    <xsd:element name="TextMessage" nillable="true" type="tns:TextMessage"/>
+    <xsd:element name="ArrayOfTextMessage" nillable="true" type="tns:ArrayOfTextMessage"/>
+    <xsd:element name="ArrayOfDispatch" nillable="true" type="tns:ArrayOfDispatch"/>
+    <xsd:element name="ArrayOfEmailDispatch" nillable="true" type="tns:ArrayOfEmailDispatch"/>
+    <xsd:element name="TextDispatch" nillable="true" type="tns:TextDispatch"/>
+    <xsd:element name="ArrayOfTimeZone" nillable="true" type="tns:ArrayOfTimeZone"/>
+</xsd:schema>

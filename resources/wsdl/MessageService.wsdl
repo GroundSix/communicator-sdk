@@ -1,0 +1,1454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ws.communicatorcorp.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://ws.communicatorcorp.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.communicatorcorp.com/">
+      <s:element name="CreatePlainTextEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="tns:MessageBody" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MessageBody">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MailingListId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PlainText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HtmlText" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreatePlainTextEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatePlainTextEmailResult" type="tns:MessageBody" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CommunicatorCredentials" type="tns:CommunicatorCredentials" />
+      <s:complexType name="CommunicatorCredentials">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="CreateHtmlEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="tns:MessageBody" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateHtmlEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateHtmlEmailResult" type="tns:MessageBody" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmails">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetEmailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailsResult" type="tns:ArrayOfMessageBody" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMessageBody">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MessageBody" nillable="true" type="tns:MessageBody" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="emailId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailResult" type="tns:MessageBody" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pageOption" type="tns:PageOption" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PageOption">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="StartIndex" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" nillable="true" type="tns:SortOrder" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SortOrder">
+        <s:restriction base="s:string">
+          <s:enumeration value="OldestFirst" />
+          <s:enumeration value="NewestFirst" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetEmailListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailListResult" type="tns:ArrayOfEmailDetail" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEmailDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmailDetail" nillable="true" type="tns:EmailDetail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EmailDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MailingListId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateCreated" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateEdited" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateTextMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="tns:TextMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TextMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="MailingListId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateTextMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateTextMessageResult" type="tns:TextMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTextMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="textMessageId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTextMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTextMessageResult" type="tns:TextMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTextMessages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="startIndex" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTextMessagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTextMessagesResult" type="tns:ArrayOfTextMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTextMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TextMessage" nillable="true" type="tns:TextMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTriggeredDispatches">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="startIndex" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTriggeredDispatchesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTriggeredDispatchesResult" type="tns:ArrayOfDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDispatch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Dispatch" nillable="true" type="tns:Dispatch" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Dispatch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="" name="MailingType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="" name="DateScheduled" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="ListSize" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="TotalSuccess" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="TotalFailed" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="IsTest" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUnauthorisedDispatches">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="startIndex" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnauthorisedDispatchesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnauthorisedDispatchesResult" type="tns:ArrayOfDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DispatchControl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="control" type="tns:Control" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Control">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Command" type="tns:ControlCommand" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ControlCommand">
+        <s:restriction base="s:string">
+          <s:enumeration value="Authorise" />
+          <s:enumeration value="Pause" />
+          <s:enumeration value="Resume" />
+          <s:enumeration value="Cancel" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DispatchControlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DispatchControlResult" type="tns:Dispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateEmailDispatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="emailDispatch" type="tns:EmailDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EmailDispatch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmailId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MailingListId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="FilterId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FromName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FromAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubjectLine" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReplyForwardingAddress" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrackHtmlLinks" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrackPlainLinks" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="IndicatedListSize" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="TotalProcessed" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="TotalSuccess" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="TotalFailed" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ScheduledDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateStarted" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateCompleted" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedBy" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateCreated" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastAuthorisedBy" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastAuthorisedDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TimeZone" type="tns:TimeZone" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="IsTriggeredDispatch" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="IsTest" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="EnableConversionTracking" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="EnableAnalytics" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeZone">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateEmailDispatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateEmailDispatchResult" type="tns:EmailDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnauthorisedEmailDispatches">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUnauthorisedEmailDispatchesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnauthorisedEmailDispatchesResult" type="tns:ArrayOfEmailDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEmailDispatch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmailDispatch" nillable="true" type="tns:EmailDispatch" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EmailDispatchControl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dispatchControl" type="tns:Control" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EmailDispatchControlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmailDispatchControlResult" type="tns:EmailDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTriggerDispatches">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mailingListId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTriggerDispatchesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTriggerDispatchesResult" type="tns:ArrayOfEmailDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTextDispatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="textDispatch" type="tns:TextDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TextDispatch">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DispatchDetails">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" default="0" name="TextMessageId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="0" name="MaximumPagesPerRecipient" type="s:unsignedByte" />
+              <s:element minOccurs="0" maxOccurs="1" default="true" name="AllowSpecialCharacters" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DispatchDetails" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Dispatch">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" default="0" name="MailingListId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="0" name="MailingListFilterId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="" name="FromName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" default="" name="TimeZoneName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" default="false" name="IsTriggeredDispatch" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CreateTextDispatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateTextDispatchResult" type="tns:TextDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTextDispatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="textDispatchId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTextDispatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTextDispatchResult" type="tns:TextDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTimeZones">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTimeZonesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTimeZonesResult" type="tns:ArrayOfTimeZone" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTimeZone">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TimeZone" nillable="true" type="tns:TimeZone" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfMessageBody" nillable="true" type="tns:ArrayOfMessageBody" />
+      <s:element name="MessageBody" nillable="true" type="tns:MessageBody" />
+      <s:element name="TextMessage" nillable="true" type="tns:TextMessage" />
+      <s:element name="ArrayOfTextMessage" nillable="true" type="tns:ArrayOfTextMessage" />
+      <s:element name="ArrayOfDispatch" nillable="true" type="tns:ArrayOfDispatch" />
+      <s:element name="ArrayOfEmailDispatch" nillable="true" type="tns:ArrayOfEmailDispatch" />
+      <s:element name="TextDispatch" nillable="true" type="tns:TextDispatch" />
+      <s:element name="ArrayOfTimeZone" nillable="true" type="tns:ArrayOfTimeZone" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreatePlainTextEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePlainTextEmail" />
+  </wsdl:message>
+  <wsdl:message name="CreatePlainTextEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePlainTextEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePlainTextEmailCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateHtmlEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateHtmlEmail" />
+  </wsdl:message>
+  <wsdl:message name="CreateHtmlEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateHtmlEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateHtmlEmailCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmails" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmail" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmailList" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailListCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateTextMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTextMessage" />
+  </wsdl:message>
+  <wsdl:message name="CreateTextMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTextMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateTextMessageCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTextMessage" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTextMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessageCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessagesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTextMessages" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessagesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTextMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessagesCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggeredDispatchesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTriggeredDispatches" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggeredDispatchesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTriggeredDispatchesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggeredDispatchesCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetUnauthorisedDispatchesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnauthorisedDispatches" />
+  </wsdl:message>
+  <wsdl:message name="GetUnauthorisedDispatchesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnauthorisedDispatchesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnauthorisedDispatchesCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="DispatchControlSoapIn">
+    <wsdl:part name="parameters" element="tns:DispatchControl" />
+  </wsdl:message>
+  <wsdl:message name="DispatchControlSoapOut">
+    <wsdl:part name="parameters" element="tns:DispatchControlResponse" />
+  </wsdl:message>
+  <wsdl:message name="DispatchControlCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateEmailDispatchSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateEmailDispatch" />
+  </wsdl:message>
+  <wsdl:message name="CreateEmailDispatchSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateEmailDispatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateEmailDispatchCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetUnauthorisedEmailDispatchesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnauthorisedEmailDispatches" />
+  </wsdl:message>
+  <wsdl:message name="GetUnauthorisedEmailDispatchesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnauthorisedEmailDispatchesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnauthorisedEmailDispatchesCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="EmailDispatchControlSoapIn">
+    <wsdl:part name="parameters" element="tns:EmailDispatchControl" />
+  </wsdl:message>
+  <wsdl:message name="EmailDispatchControlSoapOut">
+    <wsdl:part name="parameters" element="tns:EmailDispatchControlResponse" />
+  </wsdl:message>
+  <wsdl:message name="EmailDispatchControlCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggerDispatchesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTriggerDispatches" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggerDispatchesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTriggerDispatchesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggerDispatchesCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateTextDispatchSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTextDispatch" />
+  </wsdl:message>
+  <wsdl:message name="CreateTextDispatchSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTextDispatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateTextDispatchCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTextDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTextDispatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeZonesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTimeZones" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeZonesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTimeZonesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeZonesCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailsHttpGetIn" />
+  <wsdl:message name="GetEmailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMessageBody" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailHttpGetIn">
+    <wsdl:part name="emailId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailHttpGetOut">
+    <wsdl:part name="Body" element="tns:MessageBody" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessageHttpGetIn">
+    <wsdl:part name="textMessageId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessageHttpGetOut">
+    <wsdl:part name="Body" element="tns:TextMessage" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessagesHttpGetIn">
+    <wsdl:part name="startIndex" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessagesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTextMessage" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggeredDispatchesHttpGetIn">
+    <wsdl:part name="startIndex" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggeredDispatchesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetUnauthorisedDispatchesHttpGetIn">
+    <wsdl:part name="startIndex" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUnauthorisedDispatchesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetUnauthorisedEmailDispatchesHttpGetIn" />
+  <wsdl:message name="GetUnauthorisedEmailDispatchesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfEmailDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggerDispatchesHttpGetIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggerDispatchesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfEmailDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchHttpGetIn">
+    <wsdl:part name="textDispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:TextDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeZonesHttpGetIn" />
+  <wsdl:message name="GetTimeZonesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTimeZone" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailsHttpPostIn" />
+  <wsdl:message name="GetEmailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfMessageBody" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailHttpPostIn">
+    <wsdl:part name="emailId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailHttpPostOut">
+    <wsdl:part name="Body" element="tns:MessageBody" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessageHttpPostIn">
+    <wsdl:part name="textMessageId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessageHttpPostOut">
+    <wsdl:part name="Body" element="tns:TextMessage" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessagesHttpPostIn">
+    <wsdl:part name="startIndex" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTextMessagesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTextMessage" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggeredDispatchesHttpPostIn">
+    <wsdl:part name="startIndex" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggeredDispatchesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetUnauthorisedDispatchesHttpPostIn">
+    <wsdl:part name="startIndex" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUnauthorisedDispatchesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetUnauthorisedEmailDispatchesHttpPostIn" />
+  <wsdl:message name="GetUnauthorisedEmailDispatchesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfEmailDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggerDispatchesHttpPostIn">
+    <wsdl:part name="mailingListId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTriggerDispatchesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfEmailDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchHttpPostIn">
+    <wsdl:part name="textDispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:TextDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeZonesHttpPostIn" />
+  <wsdl:message name="GetTimeZonesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTimeZone" />
+  </wsdl:message>
+  <wsdl:portType name="MessageServiceSoap">
+    <wsdl:operation name="CreatePlainTextEmail">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a plain text email</wsdl:documentation>
+      <wsdl:input message="tns:CreatePlainTextEmailSoapIn" />
+      <wsdl:output message="tns:CreatePlainTextEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateHtmlEmail">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new HTML/Multipart email</wsdl:documentation>
+      <wsdl:input message="tns:CreateHtmlEmailSoapIn" />
+      <wsdl:output message="tns:CreateHtmlEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all emails</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailsSoapIn" />
+      <wsdl:output message="tns:GetEmailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmail">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all emails</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailSoapIn" />
+      <wsdl:output message="tns:GetEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a paged list of emails</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailListSoapIn" />
+      <wsdl:output message="tns:GetEmailListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTextMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a new text message</wsdl:documentation>
+      <wsdl:input message="tns:CreateTextMessageSoapIn" />
+      <wsdl:output message="tns:CreateTextMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a single text message</wsdl:documentation>
+      <wsdl:input message="tns:GetTextMessageSoapIn" />
+      <wsdl:output message="tns:GetTextMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessageCollection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a collection of text messages</wsdl:documentation>
+      <wsdl:input name="GetTextMessages" message="tns:GetTextMessagesSoapIn" />
+      <wsdl:output name="GetTextMessages" message="tns:GetTextMessagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggeredDispatches">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get an array of triggerable dispatches</wsdl:documentation>
+      <wsdl:input message="tns:GetTriggeredDispatchesSoapIn" />
+      <wsdl:output message="tns:GetTriggeredDispatchesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedDispatches">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get an array of dispatches awaiting authorisation</wsdl:documentation>
+      <wsdl:input message="tns:GetUnauthorisedDispatchesSoapIn" />
+      <wsdl:output message="tns:GetUnauthorisedDispatchesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DispatchControl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Perform an action on a dispatch [Authorise, Pause, Restart, Cancel]</wsdl:documentation>
+      <wsdl:input message="tns:DispatchControlSoapIn" />
+      <wsdl:output message="tns:DispatchControlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateEmailDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a new email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:CreateEmailDispatchSoapIn" />
+      <wsdl:output message="tns:CreateEmailDispatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedEmailDispatches">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of unauthorised email dispatches</wsdl:documentation>
+      <wsdl:input message="tns:GetUnauthorisedEmailDispatchesSoapIn" />
+      <wsdl:output message="tns:GetUnauthorisedEmailDispatchesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EmailDispatchControl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Provides a unified method to control a dispatch</wsdl:documentation>
+      <wsdl:input message="tns:EmailDispatchControlSoapIn" />
+      <wsdl:output message="tns:EmailDispatchControlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggerDispatches">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of trigger dispatches for a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetTriggerDispatchesSoapIn" />
+      <wsdl:output message="tns:GetTriggerDispatchesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTextDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new text disaptch</wsdl:documentation>
+      <wsdl:input message="tns:CreateTextDispatchSoapIn" />
+      <wsdl:output message="tns:CreateTextDispatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a single text disaptch</wsdl:documentation>
+      <wsdl:input message="tns:GetTextDispatchSoapIn" />
+      <wsdl:output message="tns:GetTextDispatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of time zones</wsdl:documentation>
+      <wsdl:input message="tns:GetTimeZonesSoapIn" />
+      <wsdl:output message="tns:GetTimeZonesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MessageServiceHttpGet">
+    <wsdl:operation name="GetEmails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all emails</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailsHttpGetIn" />
+      <wsdl:output message="tns:GetEmailsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmail">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all emails</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailHttpGetIn" />
+      <wsdl:output message="tns:GetEmailHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a single text message</wsdl:documentation>
+      <wsdl:input message="tns:GetTextMessageHttpGetIn" />
+      <wsdl:output message="tns:GetTextMessageHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessageCollection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a collection of text messages</wsdl:documentation>
+      <wsdl:input name="GetTextMessages" message="tns:GetTextMessagesHttpGetIn" />
+      <wsdl:output name="GetTextMessages" message="tns:GetTextMessagesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggeredDispatches">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get an array of triggerable dispatches</wsdl:documentation>
+      <wsdl:input message="tns:GetTriggeredDispatchesHttpGetIn" />
+      <wsdl:output message="tns:GetTriggeredDispatchesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedDispatches">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get an array of dispatches awaiting authorisation</wsdl:documentation>
+      <wsdl:input message="tns:GetUnauthorisedDispatchesHttpGetIn" />
+      <wsdl:output message="tns:GetUnauthorisedDispatchesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedEmailDispatches">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of unauthorised email dispatches</wsdl:documentation>
+      <wsdl:input message="tns:GetUnauthorisedEmailDispatchesHttpGetIn" />
+      <wsdl:output message="tns:GetUnauthorisedEmailDispatchesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggerDispatches">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of trigger dispatches for a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetTriggerDispatchesHttpGetIn" />
+      <wsdl:output message="tns:GetTriggerDispatchesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a single text disaptch</wsdl:documentation>
+      <wsdl:input message="tns:GetTextDispatchHttpGetIn" />
+      <wsdl:output message="tns:GetTextDispatchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of time zones</wsdl:documentation>
+      <wsdl:input message="tns:GetTimeZonesHttpGetIn" />
+      <wsdl:output message="tns:GetTimeZonesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MessageServiceHttpPost">
+    <wsdl:operation name="GetEmails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all emails</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailsHttpPostIn" />
+      <wsdl:output message="tns:GetEmailsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmail">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all emails</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailHttpPostIn" />
+      <wsdl:output message="tns:GetEmailHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a single text message</wsdl:documentation>
+      <wsdl:input message="tns:GetTextMessageHttpPostIn" />
+      <wsdl:output message="tns:GetTextMessageHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessageCollection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a collection of text messages</wsdl:documentation>
+      <wsdl:input name="GetTextMessages" message="tns:GetTextMessagesHttpPostIn" />
+      <wsdl:output name="GetTextMessages" message="tns:GetTextMessagesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggeredDispatches">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get an array of triggerable dispatches</wsdl:documentation>
+      <wsdl:input message="tns:GetTriggeredDispatchesHttpPostIn" />
+      <wsdl:output message="tns:GetTriggeredDispatchesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedDispatches">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get an array of dispatches awaiting authorisation</wsdl:documentation>
+      <wsdl:input message="tns:GetUnauthorisedDispatchesHttpPostIn" />
+      <wsdl:output message="tns:GetUnauthorisedDispatchesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedEmailDispatches">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of unauthorised email dispatches</wsdl:documentation>
+      <wsdl:input message="tns:GetUnauthorisedEmailDispatchesHttpPostIn" />
+      <wsdl:output message="tns:GetUnauthorisedEmailDispatchesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggerDispatches">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of trigger dispatches for a mailing list</wsdl:documentation>
+      <wsdl:input message="tns:GetTriggerDispatchesHttpPostIn" />
+      <wsdl:output message="tns:GetTriggerDispatchesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a single text disaptch</wsdl:documentation>
+      <wsdl:input message="tns:GetTextDispatchHttpPostIn" />
+      <wsdl:output message="tns:GetTextDispatchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of time zones</wsdl:documentation>
+      <wsdl:input message="tns:GetTimeZonesHttpPostIn" />
+      <wsdl:output message="tns:GetTimeZonesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MessageServiceSoap" type="tns:MessageServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreatePlainTextEmail">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/CreatePlainTextEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreatePlainTextEmailCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateHtmlEmail">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/CreateHtmlEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateHtmlEmailCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmails">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetEmails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmailsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmail">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmailCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailList">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetEmailList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmailListCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTextMessage">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/CreateTextMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateTextMessageCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessage">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetTextMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTextMessageCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessageCollection">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetTextMessages" style="document" />
+      <wsdl:input name="GetTextMessages">
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTextMessagesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetTextMessages">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggeredDispatches">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetTriggeredDispatches" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTriggeredDispatchesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedDispatches">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetUnauthorisedDispatches" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUnauthorisedDispatchesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DispatchControl">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/DispatchControl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DispatchControlCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateEmailDispatch">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/CreateEmailDispatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateEmailDispatchCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedEmailDispatches">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetUnauthorisedEmailDispatches" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUnauthorisedEmailDispatchesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EmailDispatchControl">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/EmailDispatchControl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:EmailDispatchControlCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggerDispatches">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetTriggerDispatches" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTriggerDispatchesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTextDispatch">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/CreateTextDispatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateTextDispatchCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetTextDispatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTextDispatchCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetTimeZones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTimeZonesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MessageServiceSoap12" type="tns:MessageServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreatePlainTextEmail">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/CreatePlainTextEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreatePlainTextEmailCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateHtmlEmail">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/CreateHtmlEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateHtmlEmailCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmails">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetEmails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmailsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmail">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmailCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailList">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetEmailList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmailListCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTextMessage">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/CreateTextMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateTextMessageCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessage">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetTextMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTextMessageCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessageCollection">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetTextMessages" style="document" />
+      <wsdl:input name="GetTextMessages">
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTextMessagesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetTextMessages">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggeredDispatches">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetTriggeredDispatches" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTriggeredDispatchesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedDispatches">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetUnauthorisedDispatches" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUnauthorisedDispatchesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DispatchControl">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/DispatchControl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DispatchControlCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateEmailDispatch">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/CreateEmailDispatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateEmailDispatchCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedEmailDispatches">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetUnauthorisedEmailDispatches" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUnauthorisedEmailDispatchesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EmailDispatchControl">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/EmailDispatchControl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:EmailDispatchControlCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggerDispatches">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetTriggerDispatches" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTriggerDispatchesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTextDispatch">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/CreateTextDispatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateTextDispatchCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetTextDispatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTextDispatchCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetTimeZones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTimeZonesCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MessageServiceHttpGet" type="tns:MessageServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetEmails">
+      <http:operation location="/GetEmails" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmail">
+      <http:operation location="/GetEmail" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessage">
+      <http:operation location="/GetTextMessage" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessageCollection">
+      <http:operation location="/GetTextMessages" />
+      <wsdl:input name="GetTextMessages">
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output name="GetTextMessages">
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggeredDispatches">
+      <http:operation location="/GetTriggeredDispatches" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedDispatches">
+      <http:operation location="/GetUnauthorisedDispatches" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedEmailDispatches">
+      <http:operation location="/GetUnauthorisedEmailDispatches" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggerDispatches">
+      <http:operation location="/GetTriggerDispatches" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <http:operation location="/GetTextDispatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <http:operation location="/GetTimeZones" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MessageServiceHttpPost" type="tns:MessageServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetEmails">
+      <http:operation location="/GetEmails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmail">
+      <http:operation location="/GetEmail" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessage">
+      <http:operation location="/GetTextMessage" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextMessageCollection">
+      <http:operation location="/GetTextMessages" />
+      <wsdl:input name="GetTextMessages">
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output name="GetTextMessages">
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggeredDispatches">
+      <http:operation location="/GetTriggeredDispatches" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedDispatches">
+      <http:operation location="/GetUnauthorisedDispatches" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnauthorisedEmailDispatches">
+      <http:operation location="/GetUnauthorisedEmailDispatches" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTriggerDispatches">
+      <http:operation location="/GetTriggerDispatches" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <http:operation location="/GetTextDispatch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <http:operation location="/GetTimeZones" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MessageService">
+    <wsdl:port name="MessageServiceSoap" binding="tns:MessageServiceSoap">
+      <soap:address location="https://ws.communicatorcorp.com/MessageService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MessageServiceSoap12" binding="tns:MessageServiceSoap12">
+      <soap12:address location="https://ws.communicatorcorp.com/MessageService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MessageServiceHttpGet" binding="tns:MessageServiceHttpGet">
+      <http:address location="https://ws.communicatorcorp.com/MessageService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MessageServiceHttpPost" binding="tns:MessageServiceHttpPost">
+      <http:address location="https://ws.communicatorcorp.com/MessageService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

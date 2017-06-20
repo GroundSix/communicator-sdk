@@ -3,6 +3,7 @@
 namespace GroundSix\Communicator;
 
 use GroundSix\Communicator\Services\DataService;
+use GroundSix\Communicator\Services\MessageService;
 use GroundSix\Communicator\Services\ResponseService;
 use GroundSix\Communicator\Services\Validator;
 use SoapClient;
@@ -11,10 +12,12 @@ class ServiceFactory
 {
     private const WSDL_NAMES = [
         'DataService' => 'DataService.wsdl',
+        'MessageService' => 'MessageService.wsdl',
         'ResponseService' => 'ResponseService.wsdl',
     ];
     private const XSD_NAMES = [
         'DataService' => 'DataService.xsd',
+        'MessageService' => 'MessageService.xsd',
         'ResponseService' => 'ResponseService.xsd',
     ];
 
@@ -27,6 +30,17 @@ class ServiceFactory
         $validator = new Validator($xsd);
 
         return new DataService($client, $validator);
+    }
+
+    public static function MessageService(Credentials $credentials): MessageService
+    {
+        $serviceName = 'MessageService';
+        $wsdl = self::getWsdlPath($serviceName);
+        $xsd = self::getXsdPath($serviceName);
+        $client = self::makeClient($wsdl, $credentials);
+        $validator = new Validator($xsd);
+
+        return new MessageService($client, $validator);
     }
 
     public static function ResponseService(Credentials $credentials): ResponseService
