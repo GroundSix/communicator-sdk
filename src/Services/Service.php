@@ -17,7 +17,7 @@ abstract class Service
      * Service constructor.
      *
      * @param SoapClient $client
-     * @param Validtor   $validator
+     * @param Validator  $validator
      */
     public function __construct(SoapClient $client, Validator $validator)
     {

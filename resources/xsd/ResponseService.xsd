@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://ws.communicatorcorp.com/"
+            targetNamespace="http://ws.communicatorcorp.com/"
+            elementFormDefault="qualified">
+    <xsd:element name="GetEmailDispatch">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="dispatchId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetEmailDispatchResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchResult" type="tns:EmailDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="EmailDispatch">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="EmailId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="MailingListId" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FilterId" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="FromName" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="FromAddress" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="SubjectLine" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Status" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ReplyForwardingAddress" type="xsd:string"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TrackHtmlLinks" type="xsd:boolean"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TrackPlainLinks" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="IndicatedListSize" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TotalProcessed" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TotalSuccess" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TotalFailed" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ScheduledDate" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DateStarted" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DateCompleted" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="CreatedBy" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DateCreated" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="LastAuthorisedBy" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="LastAuthorisedDate" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="TimeZone" type="tns:TimeZone"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IsTriggeredDispatch" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IsTest" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="EnableConversionTracking"
+                         type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="EnableAnalytics" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TimeZone">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Description" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CommunicatorCredentials" type="tns:CommunicatorCredentials"/>
+    <xsd:complexType name="CommunicatorCredentials">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Username" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Password" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:anyAttribute/>
+    </xsd:complexType>
+    <xsd:element name="GetEmailDispatchesWithinDateRange">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="fromDate" type="xsd:string"/>
+                <xsd:element minOccurs="0" maxOccurs="1" name="toDate" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetEmailDispatchesWithinDateRangeResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchesWithinDateRangeResult"
+                             type="tns:ArrayOfEmailDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfEmailDispatch">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="EmailDispatch" nillable="true"
+                         type="tns:EmailDispatch"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetEmailDispatchLinks">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="dispatchId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetEmailDispatchLinksResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchLinksResult"
+                             type="tns:ArrayOfEmailLink"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfEmailLink">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="EmailLink" nillable="true" type="tns:EmailLink"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="EmailLink">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Url" type="xsd:string"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalClicks" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalUniqueClicks" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetTextDispatch">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="textDispatchId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetTextDispatchResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetTextDispatchResult" type="tns:TextDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="TextDispatch">
+        <xsd:complexContent mixed="false">
+            <xsd:extension base="tns:DispatchDetails">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TextMessageId" type="xsd:int"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MaximumPagesPerRecipient"
+                                 type="xsd:unsignedByte"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="true" name="AllowSpecialCharacters"
+                                 type="xsd:boolean"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="DispatchDetails" abstract="true">
+        <xsd:complexContent mixed="false">
+            <xsd:extension base="tns:Dispatch">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MailingListId" type="xsd:int"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MailingListFilterId" type="xsd:int"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="" name="FromName" type="xsd:string"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="" name="TimeZoneName" type="xsd:string"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IsTriggeredDispatch"
+                                 type="xsd:boolean"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="Dispatch">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="" name="MailingType" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="" name="Status" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="" name="DateScheduled" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ListSize" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TotalSuccess" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TotalFailed" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="IsTest" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetDispatchesWithinDateRange">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="fromDate" type="xsd:string"/>
+                <xsd:element minOccurs="0" maxOccurs="1" name="toDate" type="xsd:string"/>
+                <xsd:element minOccurs="1" maxOccurs="1" name="startIndex" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetDispatchesWithinDateRangeResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetDispatchesWithinDateRangeResult"
+                             type="tns:ArrayOfDispatch"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ArrayOfDispatch">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Dispatch" nillable="true" type="tns:Dispatch"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetEmailDispatchOpenStatistics">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="dispatchId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetEmailDispatchOpenStatisticsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchOpenStatisticsResult"
+                             type="tns:EmailDispatchOpenStatistics"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="EmailDispatchOpenStatistics">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="AverageOpensPerRecipient" type="xsd:double"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalOpens" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalUniqueOpens" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetEmailDispatchClickStatistics">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="dispatchId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetEmailDispatchClickStatisticsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchClickStatisticsResult"
+                             type="tns:EmailDispatchClickStatistics"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="EmailDispatchClickStatistics">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="AverageClicksPerOpener" type="xsd:double"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalRegularClicks" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalClicks" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalUniqueClicks" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalUnsubscribeClicks" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalWebViewClicks" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetEmailDispatchUnsubscribeStatistics">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="dispatchId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetEmailDispatchUnsubscribeStatisticsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchUnsubscribeStatisticsResult"
+                             type="tns:EmailDispatchUnsubscribeStatistics"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="EmailDispatchUnsubscribeStatistics">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalClickUnsubscribes" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalFeedbackLoopUnsubscribes" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalListUnsubscribeUnsubscribes" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalReplyUnsubscribes" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalUnsubscribes" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalDCFUnsubscribes" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetEmailDispatchBounceStatistics">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="dispatchId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetEmailDispatchBounceStatisticsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchBounceStatisticsResult"
+                             type="tns:EmailDispatchBounceStatistics"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="EmailDispatchBounceStatistics">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalContentReputationBounces" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalHardBounces" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalSoftBounces" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="TotalBounces" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CreateDataExtractJobForDispatch">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="type" type="tns:JobType"/>
+                <xsd:element minOccurs="1" maxOccurs="1" name="dispatchId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:simpleType name="JobType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Bounces"/>
+            <xsd:enumeration value="Opens"/>
+            <xsd:enumeration value="Clicks"/>
+            <xsd:enumeration value="Conversions"/>
+            <xsd:enumeration value="DispatchUnsubscribes"/>
+            <xsd:enumeration value="MailingListUnsubscribes"/>
+            <xsd:enumeration value="MailingList"/>
+            <xsd:enumeration value="TableRecords"/>
+            <xsd:enumeration value="ClicksByLink"/>
+            <xsd:enumeration value="Sent"/>
+            <xsd:enumeration value="SMSDeliveryFailure"/>
+            <xsd:enumeration value="SMSDeliveryExclusion"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="CreateDataExtractJobForDispatchResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="CreateDataExtractJobForDispatchResult"
+                             type="tns:ExtractJob"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ExtractJob">
+        <xsd:complexContent mixed="false">
+            <xsd:extension base="tns:ExtractBase">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="0" name="DispatchId" type="xsd:int"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LastId" type="xsd:long"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" default="false" name="UseDispatchedData"
+                                 type="xsd:boolean"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ExtractBase">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="xsd:int"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="Bounces" name="Type" type="tns:JobType"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="Processing" name="Status" type="tns:JobStatus"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="FileName" type="xsd:string"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="Extended" name="ExtractionScope"
+                         type="tns:ExtractionScope"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="CompressFile" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="EncodeAsUTF8" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" maxOccurs="1" default="false" name="RetrieveDeltas" type="xsd:boolean"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="DateStarted" nillable="true" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ExtractColumns" type="tns:ArrayOfExtractColumn"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="JobStatus">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="New"/>
+            <xsd:enumeration value="Processing"/>
+            <xsd:enumeration value="Complete"/>
+            <xsd:enumeration value="Failed"/>
+            <xsd:enumeration value="Cancelled"/>
+            <xsd:enumeration value="Expired"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ExtractionScope">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Standard"/>
+            <xsd:enumeration value="Extended"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="ArrayOfExtractColumn">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="ExtractColumn" nillable="true"
+                         type="tns:ExtractColumn"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ExtractColumn">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ColumnId" type="xsd:int"/>
+            <xsd:element minOccurs="1" maxOccurs="1" name="RelationshipId" nillable="true" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CreateDispatchDataExtractJob">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="job" type="tns:ExtractJob"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CreateDispatchDataExtractJobResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="CreateDispatchDataExtractJobResult"
+                             type="tns:ExtractJob"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetExtractJob">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="1" maxOccurs="1" name="extractJobId" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="GetExtractJobResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="1" name="GetExtractJobResult" type="tns:ExtractJob"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="EmailDispatch" nillable="true" type="tns:EmailDispatch"/>
+    <xsd:element name="ArrayOfEmailDispatch" nillable="true" type="tns:ArrayOfEmailDispatch"/>
+    <xsd:element name="ArrayOfEmailLink" nillable="true" type="tns:ArrayOfEmailLink"/>
+    <xsd:element name="TextDispatch" nillable="true" type="tns:TextDispatch"/>
+    <xsd:element name="ArrayOfDispatch" nillable="true" type="tns:ArrayOfDispatch"/>
+    <xsd:element name="EmailDispatchOpenStatistics" nillable="true" type="tns:EmailDispatchOpenStatistics"/>
+    <xsd:element name="EmailDispatchClickStatistics" nillable="true" type="tns:EmailDispatchClickStatistics"/>
+    <xsd:element name="EmailDispatchUnsubscribeStatistics" nillable="true"
+                 type="tns:EmailDispatchUnsubscribeStatistics"/>
+    <xsd:element name="EmailDispatchBounceStatistics" nillable="true" type="tns:EmailDispatchBounceStatistics"/>
+    <xsd:element name="ExtractJob" nillable="true" type="tns:ExtractJob"/>
+</xsd:schema>

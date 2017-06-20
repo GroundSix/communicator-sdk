@@ -1,0 +1,1285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ws.communicatorcorp.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://ws.communicatorcorp.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.communicatorcorp.com/">
+      <s:element name="GetEmailDispatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dispatchId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailDispatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchResult" type="tns:EmailDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EmailDispatch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmailId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MailingListId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="FilterId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FromName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FromAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubjectLine" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReplyForwardingAddress" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrackHtmlLinks" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrackPlainLinks" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="IndicatedListSize" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="TotalProcessed" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="TotalSuccess" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="TotalFailed" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ScheduledDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateStarted" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateCompleted" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedBy" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateCreated" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastAuthorisedBy" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastAuthorisedDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TimeZone" type="tns:TimeZone" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="IsTriggeredDispatch" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="IsTest" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="EnableConversionTracking" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="EnableAnalytics" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeZone">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CommunicatorCredentials" type="tns:CommunicatorCredentials" />
+      <s:complexType name="CommunicatorCredentials">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetEmailDispatchesWithinDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fromDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="toDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailDispatchesWithinDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchesWithinDateRangeResult" type="tns:ArrayOfEmailDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEmailDispatch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmailDispatch" nillable="true" type="tns:EmailDispatch" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEmailDispatchLinks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dispatchId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailDispatchLinksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchLinksResult" type="tns:ArrayOfEmailLink" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEmailLink">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmailLink" nillable="true" type="tns:EmailLink" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EmailLink">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalClicks" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalUniqueClicks" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTextDispatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="textDispatchId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTextDispatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTextDispatchResult" type="tns:TextDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TextDispatch">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:DispatchDetails">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" default="0" name="TextMessageId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="0" name="MaximumPagesPerRecipient" type="s:unsignedByte" />
+              <s:element minOccurs="0" maxOccurs="1" default="true" name="AllowSpecialCharacters" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DispatchDetails" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Dispatch">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" default="0" name="MailingListId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="0" name="MailingListFilterId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="" name="FromName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" default="" name="TimeZoneName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" default="false" name="IsTriggeredDispatch" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Dispatch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="" name="MailingType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="" name="DateScheduled" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="ListSize" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="TotalSuccess" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="TotalFailed" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="IsTest" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDispatchesWithinDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fromDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="toDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startIndex" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDispatchesWithinDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDispatchesWithinDateRangeResult" type="tns:ArrayOfDispatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDispatch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Dispatch" nillable="true" type="tns:Dispatch" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEmailDispatchOpenStatistics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dispatchId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailDispatchOpenStatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchOpenStatisticsResult" type="tns:EmailDispatchOpenStatistics" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EmailDispatchOpenStatistics">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AverageOpensPerRecipient" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalOpens" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalUniqueOpens" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEmailDispatchClickStatistics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dispatchId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailDispatchClickStatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchClickStatisticsResult" type="tns:EmailDispatchClickStatistics" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EmailDispatchClickStatistics">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AverageClicksPerOpener" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalRegularClicks" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalClicks" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalUniqueClicks" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalUnsubscribeClicks" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalWebViewClicks" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEmailDispatchUnsubscribeStatistics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dispatchId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailDispatchUnsubscribeStatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchUnsubscribeStatisticsResult" type="tns:EmailDispatchUnsubscribeStatistics" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EmailDispatchUnsubscribeStatistics">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TotalClickUnsubscribes" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalFeedbackLoopUnsubscribes" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalListUnsubscribeUnsubscribes" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalReplyUnsubscribes" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalUnsubscribes" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalDCFUnsubscribes" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEmailDispatchBounceStatistics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dispatchId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailDispatchBounceStatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailDispatchBounceStatisticsResult" type="tns:EmailDispatchBounceStatistics" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EmailDispatchBounceStatistics">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TotalContentReputationBounces" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalHardBounces" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalSoftBounces" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalBounces" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateDataExtractJobForDispatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:JobType" />
+            <s:element minOccurs="1" maxOccurs="1" name="dispatchId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="JobType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Bounces" />
+          <s:enumeration value="Opens" />
+          <s:enumeration value="Clicks" />
+          <s:enumeration value="Conversions" />
+          <s:enumeration value="DispatchUnsubscribes" />
+          <s:enumeration value="MailingListUnsubscribes" />
+          <s:enumeration value="MailingList" />
+          <s:enumeration value="TableRecords" />
+          <s:enumeration value="ClicksByLink" />
+          <s:enumeration value="Sent" />
+          <s:enumeration value="SMSDeliveryFailure" />
+          <s:enumeration value="SMSDeliveryExclusion" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CreateDataExtractJobForDispatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateDataExtractJobForDispatchResult" type="tns:ExtractJob" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ExtractJob">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ExtractBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" default="0" name="DispatchId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="0" name="LastId" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" default="false" name="UseDispatchedData" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ExtractBase">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="0" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="Bounces" name="Type" type="tns:JobType" />
+          <s:element minOccurs="0" maxOccurs="1" default="Processing" name="Status" type="tns:JobStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="Extended" name="ExtractionScope" type="tns:ExtractionScope" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="CompressFile" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="EncodeAsUTF8" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="RetrieveDeltas" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateStarted" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtractColumns" type="tns:ArrayOfExtractColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="JobStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="New" />
+          <s:enumeration value="Processing" />
+          <s:enumeration value="Complete" />
+          <s:enumeration value="Failed" />
+          <s:enumeration value="Cancelled" />
+          <s:enumeration value="Expired" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ExtractionScope">
+        <s:restriction base="s:string">
+          <s:enumeration value="Standard" />
+          <s:enumeration value="Extended" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfExtractColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ExtractColumn" nillable="true" type="tns:ExtractColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExtractColumn">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ColumnId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RelationshipId" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateDispatchDataExtractJob">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="job" type="tns:ExtractJob" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDispatchDataExtractJobResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateDispatchDataExtractJobResult" type="tns:ExtractJob" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExtractJob">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="extractJobId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExtractJobResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExtractJobResult" type="tns:ExtractJob" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EmailDispatch" nillable="true" type="tns:EmailDispatch" />
+      <s:element name="ArrayOfEmailDispatch" nillable="true" type="tns:ArrayOfEmailDispatch" />
+      <s:element name="ArrayOfEmailLink" nillable="true" type="tns:ArrayOfEmailLink" />
+      <s:element name="TextDispatch" nillable="true" type="tns:TextDispatch" />
+      <s:element name="ArrayOfDispatch" nillable="true" type="tns:ArrayOfDispatch" />
+      <s:element name="EmailDispatchOpenStatistics" nillable="true" type="tns:EmailDispatchOpenStatistics" />
+      <s:element name="EmailDispatchClickStatistics" nillable="true" type="tns:EmailDispatchClickStatistics" />
+      <s:element name="EmailDispatchUnsubscribeStatistics" nillable="true" type="tns:EmailDispatchUnsubscribeStatistics" />
+      <s:element name="EmailDispatchBounceStatistics" nillable="true" type="tns:EmailDispatchBounceStatistics" />
+      <s:element name="ExtractJob" nillable="true" type="tns:ExtractJob" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetEmailDispatchSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchesWithinDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatchesWithinDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchesWithinDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatchesWithinDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchesWithinDateRangeCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchLinksSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatchLinks" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchLinksSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatchLinksResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchLinksCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTextDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTextDispatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetDispatchesWithinDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDispatchesWithinDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetDispatchesWithinDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDispatchesWithinDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDispatchesWithinDateRangeCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchOpenStatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatchOpenStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchOpenStatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatchOpenStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchOpenStatisticsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchClickStatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatchClickStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchClickStatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatchClickStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchClickStatisticsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchUnsubscribeStatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatchUnsubscribeStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchUnsubscribeStatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatchUnsubscribeStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchUnsubscribeStatisticsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchBounceStatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatchBounceStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchBounceStatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailDispatchBounceStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchBounceStatisticsCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateDataExtractJobForDispatchSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDataExtractJobForDispatch" />
+  </wsdl:message>
+  <wsdl:message name="CreateDataExtractJobForDispatchSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDataExtractJobForDispatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateDataExtractJobForDispatchCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateDispatchDataExtractJobSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDispatchDataExtractJob" />
+  </wsdl:message>
+  <wsdl:message name="CreateDispatchDataExtractJobSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDispatchDataExtractJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateDispatchDataExtractJobCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetExtractJobSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExtractJob" />
+  </wsdl:message>
+  <wsdl:message name="GetExtractJobSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExtractJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExtractJobCommunicatorCredentials">
+    <wsdl:part name="CommunicatorCredentials" element="tns:CommunicatorCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchHttpGetIn">
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:EmailDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchesWithinDateRangeHttpGetIn">
+    <wsdl:part name="fromDate" type="s:string" />
+    <wsdl:part name="toDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchesWithinDateRangeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfEmailDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchLinksHttpGetIn">
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchLinksHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfEmailLink" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchHttpGetIn">
+    <wsdl:part name="textDispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:TextDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetDispatchesWithinDateRangeHttpGetIn">
+    <wsdl:part name="fromDate" type="s:string" />
+    <wsdl:part name="toDate" type="s:string" />
+    <wsdl:part name="startIndex" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDispatchesWithinDateRangeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchOpenStatisticsHttpGetIn">
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchOpenStatisticsHttpGetOut">
+    <wsdl:part name="Body" element="tns:EmailDispatchOpenStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchClickStatisticsHttpGetIn">
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchClickStatisticsHttpGetOut">
+    <wsdl:part name="Body" element="tns:EmailDispatchClickStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchUnsubscribeStatisticsHttpGetIn">
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchUnsubscribeStatisticsHttpGetOut">
+    <wsdl:part name="Body" element="tns:EmailDispatchUnsubscribeStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchBounceStatisticsHttpGetIn">
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchBounceStatisticsHttpGetOut">
+    <wsdl:part name="Body" element="tns:EmailDispatchBounceStatistics" />
+  </wsdl:message>
+  <wsdl:message name="CreateDataExtractJobForDispatchHttpGetIn">
+    <wsdl:part name="type" type="s:string" />
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDataExtractJobForDispatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:ExtractJob" />
+  </wsdl:message>
+  <wsdl:message name="GetExtractJobHttpGetIn">
+    <wsdl:part name="extractJobId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetExtractJobHttpGetOut">
+    <wsdl:part name="Body" element="tns:ExtractJob" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchHttpPostIn">
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:EmailDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchesWithinDateRangeHttpPostIn">
+    <wsdl:part name="fromDate" type="s:string" />
+    <wsdl:part name="toDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchesWithinDateRangeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfEmailDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchLinksHttpPostIn">
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchLinksHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfEmailLink" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchHttpPostIn">
+    <wsdl:part name="textDispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTextDispatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:TextDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetDispatchesWithinDateRangeHttpPostIn">
+    <wsdl:part name="fromDate" type="s:string" />
+    <wsdl:part name="toDate" type="s:string" />
+    <wsdl:part name="startIndex" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDispatchesWithinDateRangeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDispatch" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchOpenStatisticsHttpPostIn">
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchOpenStatisticsHttpPostOut">
+    <wsdl:part name="Body" element="tns:EmailDispatchOpenStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchClickStatisticsHttpPostIn">
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchClickStatisticsHttpPostOut">
+    <wsdl:part name="Body" element="tns:EmailDispatchClickStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchUnsubscribeStatisticsHttpPostIn">
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchUnsubscribeStatisticsHttpPostOut">
+    <wsdl:part name="Body" element="tns:EmailDispatchUnsubscribeStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchBounceStatisticsHttpPostIn">
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailDispatchBounceStatisticsHttpPostOut">
+    <wsdl:part name="Body" element="tns:EmailDispatchBounceStatistics" />
+  </wsdl:message>
+  <wsdl:message name="CreateDataExtractJobForDispatchHttpPostIn">
+    <wsdl:part name="type" type="s:string" />
+    <wsdl:part name="dispatchId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDataExtractJobForDispatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:ExtractJob" />
+  </wsdl:message>
+  <wsdl:message name="GetExtractJobHttpPostIn">
+    <wsdl:part name="extractJobId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetExtractJobHttpPostOut">
+    <wsdl:part name="Body" element="tns:ExtractJob" />
+  </wsdl:message>
+  <wsdl:portType name="ResponseServiceSoap">
+    <wsdl:operation name="GetEmailDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchSoapIn" />
+      <wsdl:output message="tns:GetEmailDispatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchesWithinDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of email dispatches between two dates excluding test dispatches</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchesWithinDateRangeSoapIn" />
+      <wsdl:output message="tns:GetEmailDispatchesWithinDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchLinks">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of links in an email dispatch with click statistics</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchLinksSoapIn" />
+      <wsdl:output message="tns:GetEmailDispatchLinksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a single text dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetTextDispatchSoapIn" />
+      <wsdl:output message="tns:GetTextDispatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDispatchesWithinDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retreives a collection of dispatches within a date range. Returns a maximum of 10 dispatches.</wsdl:documentation>
+      <wsdl:input message="tns:GetDispatchesWithinDateRangeSoapIn" />
+      <wsdl:output message="tns:GetDispatchesWithinDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchOpenStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets open statistics for an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchOpenStatisticsSoapIn" />
+      <wsdl:output message="tns:GetEmailDispatchOpenStatisticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchClickStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets click statistics for an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchClickStatisticsSoapIn" />
+      <wsdl:output message="tns:GetEmailDispatchClickStatisticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchUnsubscribeStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets unsubscribe statistics for an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchUnsubscribeStatisticsSoapIn" />
+      <wsdl:output message="tns:GetEmailDispatchUnsubscribeStatisticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchBounceStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets bounce statistics for an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchBounceStatisticsSoapIn" />
+      <wsdl:output message="tns:GetEmailDispatchBounceStatisticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDataExtractJobForDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new data extract job</wsdl:documentation>
+      <wsdl:input message="tns:CreateDataExtractJobForDispatchSoapIn" />
+      <wsdl:output message="tns:CreateDataExtractJobForDispatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDispatchDataExtractJob">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new dispatch data extract job</wsdl:documentation>
+      <wsdl:input message="tns:CreateDispatchDataExtractJobSoapIn" />
+      <wsdl:output message="tns:CreateDispatchDataExtractJobSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExtractJob">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an extract job</wsdl:documentation>
+      <wsdl:input message="tns:GetExtractJobSoapIn" />
+      <wsdl:output message="tns:GetExtractJobSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ResponseServiceHttpGet">
+    <wsdl:operation name="GetEmailDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchHttpGetIn" />
+      <wsdl:output message="tns:GetEmailDispatchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchesWithinDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of email dispatches between two dates excluding test dispatches</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchesWithinDateRangeHttpGetIn" />
+      <wsdl:output message="tns:GetEmailDispatchesWithinDateRangeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchLinks">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of links in an email dispatch with click statistics</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchLinksHttpGetIn" />
+      <wsdl:output message="tns:GetEmailDispatchLinksHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a single text dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetTextDispatchHttpGetIn" />
+      <wsdl:output message="tns:GetTextDispatchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDispatchesWithinDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retreives a collection of dispatches within a date range. Returns a maximum of 10 dispatches.</wsdl:documentation>
+      <wsdl:input message="tns:GetDispatchesWithinDateRangeHttpGetIn" />
+      <wsdl:output message="tns:GetDispatchesWithinDateRangeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchOpenStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets open statistics for an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchOpenStatisticsHttpGetIn" />
+      <wsdl:output message="tns:GetEmailDispatchOpenStatisticsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchClickStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets click statistics for an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchClickStatisticsHttpGetIn" />
+      <wsdl:output message="tns:GetEmailDispatchClickStatisticsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchUnsubscribeStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets unsubscribe statistics for an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchUnsubscribeStatisticsHttpGetIn" />
+      <wsdl:output message="tns:GetEmailDispatchUnsubscribeStatisticsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchBounceStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets bounce statistics for an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchBounceStatisticsHttpGetIn" />
+      <wsdl:output message="tns:GetEmailDispatchBounceStatisticsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDataExtractJobForDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new data extract job</wsdl:documentation>
+      <wsdl:input message="tns:CreateDataExtractJobForDispatchHttpGetIn" />
+      <wsdl:output message="tns:CreateDataExtractJobForDispatchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExtractJob">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an extract job</wsdl:documentation>
+      <wsdl:input message="tns:GetExtractJobHttpGetIn" />
+      <wsdl:output message="tns:GetExtractJobHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ResponseServiceHttpPost">
+    <wsdl:operation name="GetEmailDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchHttpPostIn" />
+      <wsdl:output message="tns:GetEmailDispatchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchesWithinDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of email dispatches between two dates excluding test dispatches</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchesWithinDateRangeHttpPostIn" />
+      <wsdl:output message="tns:GetEmailDispatchesWithinDateRangeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchLinks">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an array of links in an email dispatch with click statistics</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchLinksHttpPostIn" />
+      <wsdl:output message="tns:GetEmailDispatchLinksHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a single text dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetTextDispatchHttpPostIn" />
+      <wsdl:output message="tns:GetTextDispatchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDispatchesWithinDateRange">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retreives a collection of dispatches within a date range. Returns a maximum of 10 dispatches.</wsdl:documentation>
+      <wsdl:input message="tns:GetDispatchesWithinDateRangeHttpPostIn" />
+      <wsdl:output message="tns:GetDispatchesWithinDateRangeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchOpenStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets open statistics for an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchOpenStatisticsHttpPostIn" />
+      <wsdl:output message="tns:GetEmailDispatchOpenStatisticsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchClickStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets click statistics for an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchClickStatisticsHttpPostIn" />
+      <wsdl:output message="tns:GetEmailDispatchClickStatisticsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchUnsubscribeStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets unsubscribe statistics for an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchUnsubscribeStatisticsHttpPostIn" />
+      <wsdl:output message="tns:GetEmailDispatchUnsubscribeStatisticsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchBounceStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets bounce statistics for an email dispatch</wsdl:documentation>
+      <wsdl:input message="tns:GetEmailDispatchBounceStatisticsHttpPostIn" />
+      <wsdl:output message="tns:GetEmailDispatchBounceStatisticsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDataExtractJobForDispatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new data extract job</wsdl:documentation>
+      <wsdl:input message="tns:CreateDataExtractJobForDispatchHttpPostIn" />
+      <wsdl:output message="tns:CreateDataExtractJobForDispatchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExtractJob">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets an extract job</wsdl:documentation>
+      <wsdl:input message="tns:GetExtractJobHttpPostIn" />
+      <wsdl:output message="tns:GetExtractJobHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ResponseServiceSoap" type="tns:ResponseServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEmailDispatch">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmailDispatchCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchesWithinDateRange">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatchesWithinDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmailDispatchesWithinDateRangeCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchLinks">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatchLinks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmailDispatchLinksCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetTextDispatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTextDispatchCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDispatchesWithinDateRange">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetDispatchesWithinDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDispatchesWithinDateRangeCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchOpenStatistics">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatchOpenStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmailDispatchOpenStatisticsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchClickStatistics">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatchClickStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmailDispatchClickStatisticsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchUnsubscribeStatistics">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatchUnsubscribeStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmailDispatchUnsubscribeStatisticsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchBounceStatistics">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatchBounceStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmailDispatchBounceStatisticsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDataExtractJobForDispatch">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/CreateDataExtractJobForDispatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateDataExtractJobForDispatchCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDispatchDataExtractJob">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/CreateDispatchDataExtractJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateDispatchDataExtractJobCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExtractJob">
+      <soap:operation soapAction="http://ws.communicatorcorp.com/GetExtractJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExtractJobCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ResponseServiceSoap12" type="tns:ResponseServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEmailDispatch">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmailDispatchCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchesWithinDateRange">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatchesWithinDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmailDispatchesWithinDateRangeCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchLinks">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatchLinks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmailDispatchLinksCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetTextDispatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTextDispatchCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDispatchesWithinDateRange">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetDispatchesWithinDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDispatchesWithinDateRangeCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchOpenStatistics">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatchOpenStatistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmailDispatchOpenStatisticsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchClickStatistics">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatchClickStatistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmailDispatchClickStatisticsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchUnsubscribeStatistics">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatchUnsubscribeStatistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmailDispatchUnsubscribeStatisticsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchBounceStatistics">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetEmailDispatchBounceStatistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmailDispatchBounceStatisticsCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDataExtractJobForDispatch">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/CreateDataExtractJobForDispatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateDataExtractJobForDispatchCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDispatchDataExtractJob">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/CreateDispatchDataExtractJob" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateDispatchDataExtractJobCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExtractJob">
+      <soap12:operation soapAction="http://ws.communicatorcorp.com/GetExtractJob" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExtractJobCommunicatorCredentials" part="CommunicatorCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ResponseServiceHttpGet" type="tns:ResponseServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetEmailDispatch">
+      <http:operation location="/GetEmailDispatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchesWithinDateRange">
+      <http:operation location="/GetEmailDispatchesWithinDateRange" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchLinks">
+      <http:operation location="/GetEmailDispatchLinks" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <http:operation location="/GetTextDispatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDispatchesWithinDateRange">
+      <http:operation location="/GetDispatchesWithinDateRange" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchOpenStatistics">
+      <http:operation location="/GetEmailDispatchOpenStatistics" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchClickStatistics">
+      <http:operation location="/GetEmailDispatchClickStatistics" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchUnsubscribeStatistics">
+      <http:operation location="/GetEmailDispatchUnsubscribeStatistics" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchBounceStatistics">
+      <http:operation location="/GetEmailDispatchBounceStatistics" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDataExtractJobForDispatch">
+      <http:operation location="/CreateDataExtractJobForDispatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExtractJob">
+      <http:operation location="/GetExtractJob" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ResponseServiceHttpPost" type="tns:ResponseServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetEmailDispatch">
+      <http:operation location="/GetEmailDispatch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchesWithinDateRange">
+      <http:operation location="/GetEmailDispatchesWithinDateRange" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchLinks">
+      <http:operation location="/GetEmailDispatchLinks" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextDispatch">
+      <http:operation location="/GetTextDispatch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDispatchesWithinDateRange">
+      <http:operation location="/GetDispatchesWithinDateRange" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchOpenStatistics">
+      <http:operation location="/GetEmailDispatchOpenStatistics" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchClickStatistics">
+      <http:operation location="/GetEmailDispatchClickStatistics" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchUnsubscribeStatistics">
+      <http:operation location="/GetEmailDispatchUnsubscribeStatistics" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailDispatchBounceStatistics">
+      <http:operation location="/GetEmailDispatchBounceStatistics" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDataExtractJobForDispatch">
+      <http:operation location="/CreateDataExtractJobForDispatch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExtractJob">
+      <http:operation location="/GetExtractJob" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ResponseService">
+    <wsdl:port name="ResponseServiceSoap" binding="tns:ResponseServiceSoap">
+      <soap:address location="https://ws.communicatorcorp.com/ResponseService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ResponseServiceSoap12" binding="tns:ResponseServiceSoap12">
+      <soap12:address location="https://ws.communicatorcorp.com/ResponseService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ResponseServiceHttpGet" binding="tns:ResponseServiceHttpGet">
+      <http:address location="https://ws.communicatorcorp.com/ResponseService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ResponseServiceHttpPost" binding="tns:ResponseServiceHttpPost">
+      <http:address location="https://ws.communicatorcorp.com/ResponseService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
