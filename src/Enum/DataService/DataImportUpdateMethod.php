@@ -1,6 +1,6 @@
 <?php
 
-namespace GroundSix\Communicator\Enum\DataService;
+namespace GroundSix\Enum\DataService;
 
 use MyCLabs\Enum\Enum;
 
@@ -11,10 +11,8 @@ use MyCLabs\Enum\Enum;
  */
 class DataImportUpdateMethod extends Enum
 {
-    /** Only insert new records */
     const INSERT = 'Insert';
-    /** Only update existing records */
     const UPDATE = 'Update';
-    /** Insert new records and update existing records. */
     const UPSERT = 'Upsert';
 }
+
