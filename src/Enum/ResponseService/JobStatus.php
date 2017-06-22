@@ -1,6 +1,6 @@
 <?php
 
-namespace GroundSix\Enum\ResponseService;
+namespace GroundSix\Communicator\Enum\ResponseService;
 
 use MyCLabs\Enum\Enum;
 

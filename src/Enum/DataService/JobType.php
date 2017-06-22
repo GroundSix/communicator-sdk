@@ -1,6 +1,6 @@
 <?php
 
-namespace GroundSix\Enum\DataService;
+namespace GroundSix\Communicator\Enum\DataService;
 
 use MyCLabs\Enum\Enum;
 
