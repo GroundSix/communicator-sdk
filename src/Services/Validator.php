@@ -77,6 +77,7 @@ class Validator
         $dom->loadXML($soap);
         /** @var DOMElement $body */
         $body = $dom->getElementsByTagName('Body')[0];
+        $body->firstChild->setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
         $response = $dom->saveXML($body->firstChild);
         unset($dom, $body);
 
