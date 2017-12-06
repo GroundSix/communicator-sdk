@@ -1,7 +1,7 @@
 {
   "name": "groundsix/communicator-sdk",
   "description": "SDK for interacting with the Communicator SOAP api",
-  "license": "proprietary",
+  "license": "GPL-3.0",
   "authors": [
     {
       "name": "James Fenwick",
